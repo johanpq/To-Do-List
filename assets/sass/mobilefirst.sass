@@ -1,0 +1,98 @@
+@use 'partials/_variables'
+    
+* 
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    font-family: Arial, Helvetica, sans-serif
+
+body 
+    height: 100vh
+
+header 
+    background-color: variables.$Primary-color-light
+    width: 100%
+    height: 180px
+    background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png)
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: cover
+
+
+    img
+        position: relative
+        width: 30%           
+        height: 180px        
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px 
+        left: -70px       
+        order: 0
+
+    h1  
+        color: variables.$Sixth-color
+        height: 100%
+        font-size: 3em 
+        background-color: variables.$Primary-color
+        opacity: 78%     
+        order: 1
+        padding: 50px 
+
+    .options-container
+        display: flex
+        justify-content: flex-end 
+        gap: 20px
+        padding-right: 20px
+        margin-top: 10px
+
+
+        hr
+            height: 20px
+            margin-top: -40px        
+
+        button
+            position: relative
+            width: 15%    
+            cursor: pointer
+            font-size: 1.2em
+            border: 1px solid #3838381c
+            border-top-left-radius: 7px
+            border-top-right-radius: 7px
+            box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
+            background-color: variables.$Fith-color-light
+            color: variables.$Sixth-color-light 
+            top: -42px  
+   
+
+        button:hover 
+            color: variables.$Fith-color
+
+.tasks-container
+    display: flex
+    height: 100%
+    margin-top: 50px
+    justify-content: left
+    padding-left: 30px
+    gap: 30px
+    font-size: 1.8em
+
+
+    div
+        border: 1px solid variables.$Seventh-color-light
+        background-color: variables.$Secondary-color-light
+        border: 1px solid  #3838381c
+        box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
+        border-radius: 7px
+        padding: 4px
+        cursor: pointer
+
+    div:hover
+        background-color: variables.$Sixth-color-light
+
+
+.results 
+    display: flex
+    height: 100%
+    margin-top: 50px
+    justify-content: space-around
+    font-size: 1.8em
+    padding-left: 30px

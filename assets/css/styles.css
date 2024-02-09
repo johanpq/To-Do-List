@@ -19,38 +19,12 @@ body header {
   display: block;
   height: 12%;
   width: 80%;
-  margin: auto;
+  margin: 50px auto 0px auto;
   background-color: rgba(146, 38, 224, 0.431372549);
   background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* .options-container
-  *  display: flex
-  *  justify-content: flex-end 
-  *  gap: 20px
-  *  padding-right: 20px
-  *  margin-top: 10px */
-  *
-  *  /* hr
-  *      height: 20px
-  *      margin-top: -40px */        
-  *
-  *  button
-  *      position: relative
-  *      width: 15%    
-  *      cursor: pointer
-  *      font-size: 1.2em
-  *      border: 1px solid #3838381c
-  *      border-top-left-radius: 7px
-  *      border-top-right-radius: 7px
-  *      box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
-  *      background-color: variables.$Fith-color-light
-  *      color: variables.$Sixth-color-light 
-  *      top: -42px  
-  *  button:hover 
-  *      color: variables.$Sixth-color
-  *      transition: color .2s  */
 }
 body header h1 {
   position: relative;
@@ -60,6 +34,35 @@ body header h1 {
   background-color: #9326E0;
   opacity: 78%;
   text-align: center;
+}
+body header .options-container {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  gap: 20px;
+  padding-left: 20px;
+  margin-top: 52px;
+}
+body header .options-container hr {
+  position: relative;
+  top: -40px;
+}
+body header .options-container button {
+  position: relative;
+  width: 15%;
+  cursor: pointer;
+  font-size: 1.2em;
+  border: 1px solid rgba(56, 56, 56, 0.1098039216);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.6588235294);
+  background-color: rgba(38, 50, 224, 0.3960784314);
+  color: rgba(255, 255, 255, 0.5960784314);
+  top: -42px;
+}
+body header .options-container button:hover {
+  color: #ffffff;
+  transition: color 0.2s;
 }
 body main {
   display: flex;
@@ -78,11 +81,9 @@ body main .time {
 }
 body .tasks-container {
   display: flex;
-  /* height: 100% */
   margin-top: 50px;
   justify-content: center;
   align-content: center;
-  padding-left: 30px;
   gap: 30px;
   font-size: 1.8em;
 }
@@ -92,8 +93,9 @@ body .tasks-container div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.6588235294);
   border-radius: 7px;
-  padding: 4px;
   cursor: pointer;
+  padding: 1px;
+  text-align: center;
 }
 body .tasks-container div:hover {
   background-color: rgba(255, 255, 255, 0.5960784314);
@@ -101,18 +103,20 @@ body .tasks-container div:hover {
 }
 body .results {
   display: flex;
+  height: 100%;
+  flex-direction: column;
   margin-top: 50px;
-  justify-content: space-around;
-  font-size: 1.8em;
-  padding-left: 30px;
 }
 body .results div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   background-color: rgba(224, 38, 143, 0.431372549);
-  padding: 50px;
-  font-size: 1em;
   border-radius: 10px;
-  max-width: 80%;
+  margin: 0px 50px 50px 50px;
+  text-align: center;
+}
+body .results div p {
+  padding: 10px;
+  font-size: 1.2em;
 }
 
 /*# sourceMappingURL=styles.css.map */

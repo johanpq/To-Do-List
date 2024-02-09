@@ -18,7 +18,7 @@ body
         display: block 
         height: 12%            
         width: 80% 
-        margin: auto
+        margin: 50px auto 0px auto 
         background-color: variables.$Primary-color-light
         background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png)
         background-position: center center
@@ -35,16 +35,17 @@ body
             text-align: center 
 
 
-        /* .options-container
+        .options-container
             display: flex
-            justify-content: flex-end 
+            position: relative
+            justify-content: flex-start 
             gap: 20px
-            padding-right: 20px
-            margin-top: 10px */
+            padding-left: 20px
+            margin-top: 52px  
 
-            /* hr
-                height: 20px
-                margin-top: -40px */        
+            hr 
+                position: relative
+                top: -40px    
 
             button
                 position: relative
@@ -57,7 +58,7 @@ body
                 box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
                 background-color: variables.$Fith-color-light
                 color: variables.$Sixth-color-light 
-                top: -42px  
+                top: -42px 
     
 
             button:hover 
@@ -82,22 +83,22 @@ body
 
     .tasks-container
         display: flex
-        /* height: 100% */
+        //width: 100%
         margin-top: 50px
         justify-content: center
         align-content: center
-        padding-left: 30px
-        gap: 30px
+        gap: 30px   
         font-size: 1.8em
 
-        div
+        div 
             border: 1px solid variables.$Seventh-color-light
             background-color: variables.$Secondary-color-light
             border: 1px solid  #3838381c
             box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
             border-radius: 7px
-            padding: 4px
             cursor: pointer
+            padding: 1px 
+            text-align: center
 
         div:hover
             background-color: variables.$Sixth-color-light
@@ -106,16 +107,17 @@ body
 
     .results 
         display: flex
-        //height: 100%
-        margin-top: 50px
-        justify-content: space-around
-        font-size: 1.8em
-        padding-left: 30px
+        height: 100%    
+        flex-direction: column      
+        margin-top: 50px 
 
         div 
             border: 1px solid #3838381c
-            background-color: variables.$Secondary-color-light
-            padding: 50px
-            font-size: 1em
-            border-radius: 10px
-            max-width: 80%   
+            background-color: variables.$Secondary-color-light    
+            border-radius: 10px      
+            margin: 0px 50px 50px 50px    
+            text-align: center
+
+            p 
+                padding: 10px  
+                font-size: 1.2em 

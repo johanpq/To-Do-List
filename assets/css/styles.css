@@ -8,7 +8,7 @@
 }
 
 body {
-  display: flex;
+  display: block;
   justify-content: center;
   align-content: center;
   flex-direction: column;
@@ -49,7 +49,7 @@ body header .options-container hr {
 }
 body header .options-container button {
   position: relative;
-  width: 15%;
+  width: 20%;
   cursor: pointer;
   font-size: 1.2em;
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
@@ -65,11 +65,7 @@ body header .options-container button:hover {
   transition: color 0.2s;
 }
 body main {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
+  display: block;
   margin: auto;
   width: 80%;
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
@@ -102,9 +98,6 @@ body .tasks-container div:hover {
   transition: background-color 0.3s;
 }
 body .results {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
   margin-top: 50px;
 }
 body .results div {

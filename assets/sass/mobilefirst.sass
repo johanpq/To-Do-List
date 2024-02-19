@@ -6,16 +6,20 @@
     box-sizing: border-box
     font-family: Arial, Helvetica, sans-serif
 
-body  
-    display: block
-    height: 85vh
+body 
+    display: flex
+    height: 100vh
+    flex-direction: column
+    justify-content: center
+    align-content: center
     background-color: variables.$Primary-color-light 
 
     header
         display: block 
-        height: 14%              
+        height: 70px                         
         width: 80% 
-        margin: 50px auto 0px auto 
+        margin: auto 
+        /* margin: 50px auto 0px auto */   
         background-color: variables.$Primary-color-light
         background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png)
         background-position: center center
@@ -24,7 +28,7 @@ body
 
         h1  
             color: variables.$Sixth-color
-            height: 100%     
+            height: 100%        
             font-size: 3em 
             background-color: variables.$Primary-color
             opacity: 78%  
@@ -63,28 +67,22 @@ body
 
     main 
         display: block
-        margin: auto
+        margin: auto 
         width: 80% 
         border: 1px solid #3838381c 
         box-shadow: 0px 0px 5px 1px #3838381c
+        margin-top: -90px 
 
         .time
+            display: block
             position: relative
-            top: 310px       
-            right: 10px  
-            text-align: end 
+            right: 15px  
+            text-align: end  
+
             color: variables.$Forth-color
 
 
-    .tasks-container
-        display: flex
-        margin-top: 50px
-        justify-content: center
-        align-content: center
-        gap: 30px   
-        font-size: 1.8em
-
-        div 
+        /* div 
             border: 1px solid variables.$Seventh-color-light
             background-color: variables.$Secondary-color-light
             border: 1px solid  #3838381c
@@ -92,15 +90,15 @@ body
             border-radius: 7px
             cursor: pointer
             padding: 1px 
-            text-align: center
+            text-align: center */
 
-        div:hover
+        /* div:hover
             background-color: variables.$Sixth-color-light
-            transition: background-color .3s 
+            transition: background-color .3s  */
 
 
     .results       
-        margin-top: 50px 
+        margin-top: 100px  
 
         div 
             border: 1px solid #3838381c

@@ -8,15 +8,19 @@
 }
 
 body {
-  display: block;
-  height: 85vh;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   background-color: rgba(146, 38, 224, 0.431372549);
 }
 body header {
   display: block;
-  height: 14%;
+  height: 70px;
   width: 80%;
-  margin: 50px auto 0px auto;
+  margin: auto;
+  /* margin: 50px auto 0px auto */   
   background-color: rgba(146, 38, 224, 0.431372549);
   background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png);
   background-position: center center;
@@ -66,38 +70,29 @@ body main {
   width: 80%;
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   box-shadow: 0px 0px 5px 1px rgba(56, 56, 56, 0.1098039216);
+  margin-top: -90px;
+  /* div 
+  *  border: 1px solid variables.$Seventh-color-light
+  *  background-color: variables.$Secondary-color-light
+  *  border: 1px solid  #3838381c
+  *  box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
+  *  border-radius: 7px
+  *  cursor: pointer
+  *  padding: 1px 
+  *  text-align: center */
+  /* div:hover
+  *  background-color: variables.$Sixth-color-light
+  *  transition: background-color .3s  */
 }
 body main .time {
+  display: block;
   position: relative;
-  top: 310px;
-  right: 10px;
+  right: 15px;
   text-align: end;
   color: #5626E0;
 }
-body .tasks-container {
-  display: flex;
-  margin-top: 50px;
-  justify-content: center;
-  align-content: center;
-  gap: 30px;
-  font-size: 1.8em;
-}
-body .tasks-container div {
-  border: 1px solid rgba(0, 0, 0, 0.6588235294);
-  background-color: rgba(224, 38, 143, 0.431372549);
-  border: 1px solid rgba(56, 56, 56, 0.1098039216);
-  box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.6588235294);
-  border-radius: 7px;
-  cursor: pointer;
-  padding: 1px;
-  text-align: center;
-}
-body .tasks-container div:hover {
-  background-color: rgba(255, 255, 255, 0.5960784314);
-  transition: background-color 0.3s;
-}
 body .results {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 body .results div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);

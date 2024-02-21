@@ -34,17 +34,29 @@ body header h1 {
   opacity: 78%;
   text-align: center;
 }
-body header .options-container {
+body main {
+  margin: auto;
+  width: 80%;
+  border: 1px solid rgba(56, 56, 56, 0.1098039216);
+  box-shadow: 0px 0px 5px 1px rgba(56, 56, 56, 0.1098039216);
+  /* .time
+  *  display: block
+  *  position: relative
+  *  right: 15px  
+  *  text-align: end  
+  *  color: variables.$Forth-color */                        
+}
+body main .options-container {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 55px;
 }
-body header .options-container hr {
-  position: relative;
+body main .options-container hr {
+  position: absolute;
   top: -40px;
 }
-body header .options-container button {
+body main .options-container button {
   position: relative;
   width: 22%;
   cursor: pointer;
@@ -58,49 +70,24 @@ body header .options-container button {
   top: -42px;
   padding: 1px;
 }
-body header .options-container button:hover {
+body main .options-container button:hover {
   color: #ffffff;
   transition: color 0.2s;
 }
-body main {
-  display: block;
-  margin: auto;
-  width: 80%;
-  border: 1px solid rgba(56, 56, 56, 0.1098039216);
-  box-shadow: 0px 0px 5px 1px rgba(56, 56, 56, 0.1098039216);
-  margin-top: -200px;
+body main .results {
+  height: 200px;
+  /* margin-top: 100px */
 }
-body main .time {
-  display: block;
-  position: relative;
-  right: 15px;
-  text-align: end;
-  color: #5626E0;
-}
-body .results {
-  margin-top: 100px;
-}
-body .results div {
+body main .results div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   background-color: rgba(224, 38, 143, 0.431372549);
   border-radius: 10px;
-  margin: 0px 50px 50px 50px;
+  /* margin: 0px 50px 50px 50px  */   
   text-align: center;
 }
-body .results div p {
+body main .results div p {
   padding: 10px;
   font-size: 1.2em;
-}
-
-@media screen and (min-width: 650px) {
-  body {
-    background-color: white;
-    max-width: 50%;
-    margin: auto;
-  }
-  body main {
-    margin-top: -100px;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */

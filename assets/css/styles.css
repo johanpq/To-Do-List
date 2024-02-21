@@ -9,7 +9,7 @@
 
 body {
   display: flex;
-  height: 70vh;
+  height: 50vh;
   flex-direction: column;
   justify-content: center;
   align-content: center;

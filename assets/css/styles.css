@@ -69,18 +69,6 @@ body main {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   box-shadow: 0px 0px 5px 1px rgba(56, 56, 56, 0.1098039216);
   margin-top: -200px;
-  /* div 
-  *  border: 1px solid variables.$Seventh-color-light
-  *  background-color: variables.$Secondary-color-light
-  *  border: 1px solid  #3838381c
-  *  box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
-  *  border-radius: 7px
-  *  cursor: pointer
-  *  padding: 1px 
-  *  text-align: center */
-  /* div:hover
-  *  background-color: variables.$Sixth-color-light
-  *  transition: background-color .3s  */
 }
 body main .time {
   display: block;
@@ -102,6 +90,17 @@ body .results div {
 body .results div p {
   padding: 10px;
   font-size: 1.2em;
+}
+
+@media screen and (min-width: 650px) {
+  body {
+    background-color: white;
+    max-width: 50%;
+    margin: auto;
+  }
+  body main {
+    margin-top: -100px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

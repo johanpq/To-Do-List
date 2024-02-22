@@ -38,12 +38,6 @@ body main {
   width: 80%;
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   box-shadow: 0px 0px 5px 1px rgba(56, 56, 56, 0.1098039216);
-  /* .time
-  *  display: block
-  *  position: relative
-  *  right: 15px  
-  *  text-align: end  
-  *  color: variables.$Forth-color */                          
 }
 body main .options-container {
   display: flex;
@@ -73,16 +67,23 @@ body main .options-container button:hover {
   color: #ffffff;
   transition: color 0.2s;
 }
+body main .time {
+  display: block;
+  position: relative;
+  right: 15px;
+  text-align: end;
+  color: #5626E0;
+}
 body main .results {
   height: 200px;
-  /* margin-top: 100px */
 }
 body main .results div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   background-color: rgba(224, 38, 143, 0.431372549);
   border-radius: 10px;
-  /* margin: 0px 50px 50px 50px  */   
   text-align: center;
+  width: 50%;
+  margin: auto;
 }
 body main .results div p {
   padding: 10px;

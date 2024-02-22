@@ -1,13 +1,16 @@
 /* Orginal Colors */
 /* Light Colors */
 * {
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
+  /* display: block */
+  /* height: 100vh */
+  /* margin: 20px */
   display: flex;
   height: 50vh;
   flex-direction: column;
@@ -18,7 +21,7 @@ body {
 body header {
   height: 55px;
   width: 80%;
-  margin: 270px auto 0px auto;
+  margin: 200px auto 0px auto;
   background-color: rgba(146, 38, 224, 0.431372549);
   background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png);
   background-position: center center;
@@ -88,28 +91,6 @@ body main .results div {
 body main .results div p {
   padding: 10px;
   font-size: 1.2em;
-}
-
-/* Tablet */
-@media screen and (min-width: 692px) and (orientation: landscape) {
-  body {
-    height: 100%;
-    max-width: 80%;
-    margin: auto;
-  }
-  body header {
-    height: 80%;
-    margin: 110px auto 0px auto;
-  }
-  body header h1 {
-    height: 100%;
-  }
-}
-/* Another devices */
-@media screen and (min-width: 1000px) and (orientation: landscape) {
-  body {
-    max-width: 50%;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,19 +1,23 @@
 @use '../mobilefirst'
 @use '_variables'
     
-@media screen and (min-width: 992px) and (max-width: 1200px) and (orientation: landscape)
+/* Tablet */
+@media screen and (min-width: 692px) and (orientation: landscape)
     body 
-        height: 40%
-        background-color: white
-        max-width: 50%
+        height: 100%
+        //background-color: white
+        max-width: 80%
         margin: auto
 
         header 
-            margin: 30px auto 0px auto
+            height: 80%
+            margin: 110px auto 0px auto
 
-        main 
+            h1
+                height: 100%
 
- 
-@media screen and (min-width: 1200px)
+/* Another devices */
+@media screen and (min-width: 1000px) and (orientation: landscape)
     body
-        background-color: yellow 
+        //background-color: yellow 
+        max-width: 50%

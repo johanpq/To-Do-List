@@ -31,6 +31,7 @@ body header h1 {
   opacity: 75%;
 }
 body main {
+  height: 200px;
   background-color: rgba(242, 193, 182, 0.7529411765);
   margin: auto;
   width: 80%;
@@ -68,7 +69,7 @@ body main .options-container button:hover {
 body main .time {
   position: relative;
   right: 15px;
-  top: -5px;
+  top: 90px;
   text-align: end;
   color: #BF6B6B;
 }
@@ -91,7 +92,7 @@ body main .results div p {
     max-width: 60%;
   }
 }
-/* Another devices */
+/* Another devices */ 
 @media screen and (min-width: 1000px) {
   header, main {
     max-width: 35%;

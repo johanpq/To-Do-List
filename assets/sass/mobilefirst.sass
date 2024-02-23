@@ -12,7 +12,7 @@ body
     position: absolute
     left: 50%
     top: 50%
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%) 
 
 
     header   
@@ -22,6 +22,7 @@ body
         background-position: center center  
         background-repeat: no-repeat 
         margin: auto 
+        box-shadow: 11px 5px 4px 0px #0000001f
 
         h1
             background-color: variables.$Third-color   
@@ -30,11 +31,14 @@ body
 
 
     main  
-        background-color: variables.$Second-color
+        height: 200px 
+        //background-color: variables.$Second-color
+        background-color: variables.$Second-coloru
         margin: auto
         width: 80%
         border: 1px solid variables.$Sixth-color
-        box-shadow: 0px 0px 5px 1px variables.$Sixth-color 
+        //box-shadow: 0px 0px 5px 1px variables.$Sixth-color 
+        box-shadow: 11px 5px 4px 0px #0000001f
 
         .options-container
             display: flex
@@ -44,7 +48,7 @@ body
 
             hr 
                 position: absolute
-                top: -40px  
+                top: -40px    
 
             button
                 position: relative 
@@ -68,9 +72,9 @@ body
         .time
             position: relative
             right: 15px 
-            top: -5px 
+            top: 90px 
             text-align: end  
-            color: variables.$Fith-color        
+            color: variables.$Fith-color         
 
         .results      
             div 
@@ -84,5 +88,6 @@ body
                 p   
                     padding: 10px  
                     font-size: 1.2em 
+                        
 
             

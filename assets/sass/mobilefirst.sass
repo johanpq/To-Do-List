@@ -1,43 +1,40 @@
 @use 'partials/_variables'
-    
-* 
-    padding: 0
-    margin: 0
-    box-sizing: border-box
+
+*
+    padding: 0px
+    margin: 0px
+    box-sizing: border-box 
     font-family: Arial, Helvetica, sans-serif
 
-body 
-    display: flex
-    height: 50vh
-    flex-direction: column
-    justify-content: center
-    align-content: center
-    background-color: variables.$Primary-color-light 
+body
+    background-color: variables.$First-color 
+    width: 100vw 
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
 
-    header
-        height: 55px                         
-        width: 80%   
-        margin: 270px auto 0px auto   
-        background-color: variables.$Primary-color-light
-        background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png)
-        background-position: center center
-        background-repeat: no-repeat
+
+    header   
+        width: 80%     
+        background-image: url('../images/undraw_To_do_list_re_9nt7.png')
         background-size: cover
+        background-position: center center  
+        background-repeat: no-repeat 
+        margin: auto 
 
-        h1 
-            color: variables.$Sixth-color
-            height: 100%        
-            font-size: 2em
-            background-color: variables.$Primary-color
-            opacity: 78% 
-            text-align: center     
+        h1
+            background-color: variables.$Third-color   
+            text-align: center 
+            opacity: 75%
 
 
     main  
+        background-color: variables.$Second-color
         margin: auto
         width: 80%
-        border: 1px solid #3838381c 
-        box-shadow: 0px 0px 5px 1px #3838381c
+        border: 1px solid variables.$Sixth-color
+        box-shadow: 0px 0px 5px 1px variables.$Sixth-color 
 
         .options-container
             display: flex
@@ -57,34 +54,35 @@ body
                 border: 1px solid #3838381c
                 border-top-left-radius: 7px
                 border-top-right-radius: 7px
-                box-shadow: 1px 0px 4px 0px variables.$Seventh-color-light
-                background-color: variables.$Fith-color-light
-                color: variables.$Sixth-color-light 
+                box-shadow: 0px 0px 2px 0px variables.$Seventh-color    
+                background-color: variables.$Fith-color
+                color: variables.$Second-color   
                 top: -42px
                 padding: 1px    
     
 
-            button:hover 
-                color: variables.$Sixth-color
+            button:hover      
+                color: variables.$First-color 
                 transition: color .2s 
 
         .time
-            display: block
             position: relative
-            right: 15px  
+            right: 15px 
+            top: -5px 
             text-align: end  
-            color: variables.$Forth-color                          
-        .results
-            height: 200px       
+            color: variables.$Fith-color        
 
+        .results      
             div 
                 border: 1px solid #3838381c
-                background-color: variables.$Secondary-color-light    
-                border-radius: 10px        
+                background-color: variables.$First-color     
+                border-radius: 10px  
                 text-align: center 
                 width: 50% 
                 margin: auto
 
                 p   
                     padding: 10px  
-                    font-size: 1.2em  
+                    font-size: 1.2em 
+
+            

@@ -1,5 +1,6 @@
-/* Orginal Colors */
-/* Light Colors */
+/* Colors */
+/* Blacks */
+/* Whites */
 * {
   padding: 0px;
   margin: 0px;
@@ -8,35 +9,28 @@
 }
 
 body {
-  /* display: block */
-  /* height: 100vh */
-  /* margin: 20px */
-  display: flex;
-  height: 50vh;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  background-color: rgba(146, 38, 224, 0.431372549);
+  background-color: #D7D7D9;
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 body header {
-  height: 55px;
   width: 80%;
-  margin: 200px auto 0px auto;
-  background-color: rgba(146, 38, 224, 0.431372549);
-  background-image: url(../../assets/images/undraw_To_do_list_re_9nt7.png);
+  background-image: url("../images/undraw_To_do_list_re_9nt7.png");
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  margin: auto;
 }
 body header h1 {
-  color: #ffffff;
-  height: 100%;
-  font-size: 2em;
-  background-color: #9326E0;
-  opacity: 78%;
+  background-color: #D94E41;
   text-align: center;
+  opacity: 75%;
 }
 body main {
+  background-color: #F2C1B6;
   margin: auto;
   width: 80%;
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
@@ -60,29 +54,26 @@ body main .options-container button {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-  box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.6588235294);
-  background-color: rgba(38, 50, 224, 0.3960784314);
-  color: rgba(255, 255, 255, 0.5960784314);
+  box-shadow: 0px 0px 2px 0px #DFE9F5;
+  background-color: #BF6B6B;
+  color: #F2C1B6;
   top: -42px;
   padding: 1px;
 }
 body main .options-container button:hover {
-  color: #ffffff;
+  color: #D7D7D9;
   transition: color 0.2s;
 }
 body main .time {
-  display: block;
   position: relative;
   right: 15px;
+  top: -5px;
   text-align: end;
-  color: #5626E0;
-}
-body main .results {
-  height: 200px;
+  color: #BF6B6B;
 }
 body main .results div {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
-  background-color: rgba(224, 38, 143, 0.431372549);
+  background-color: #D7D7D9;
   border-radius: 10px;
   text-align: center;
   width: 50%;
@@ -91,6 +82,19 @@ body main .results div {
 body main .results div p {
   padding: 10px;
   font-size: 1.2em;
+}
+
+/* Tablet */
+@media screen and (min-width: 630px) {
+  header, main {
+    max-width: 60%;
+  }
+}
+/* Another devices */
+@media screen and (min-width: 1000px) {
+  header, main {
+    max-width: 35%;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

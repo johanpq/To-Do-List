@@ -2,22 +2,12 @@
 @use '_variables'
     
 /* Tablet */
-@media screen and (min-width: 692px) and (orientation: landscape)
-    body 
-        height: 100%
-        //background-color: white
-        max-width: 80%
-        margin: auto  
+@media screen and (min-width: 630px) 
+    header, main
+        max-width: 60%  
 
-        header 
-            height: 80%
-            margin: 110px auto 0px auto
-
-            h1 
-                height: 100%
  
 /* Another devices */
-@media screen and (min-width: 1000px) and (orientation: landscape)
-    body
-        //background-color: yellow  
-        max-width: 50%
+@media screen and (min-width: 1000px)
+    header, main
+        max-width: 35%

@@ -86,17 +86,44 @@ body main .results div p {
   font-size: 1.2em;
 }
 
-/* Tablet */
-@media screen and (min-width: 630px) {
-  header, main {
-    max-width: 60%;
-  }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-/* Another devices */ 
-@media screen and (min-width: 1000px) {
-  header, main {
-    max-width: 35%;
-  }
+
+.modal-content {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: -20px;
+  right: -13px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 8px;
+  background-color: antiquewhite;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  left: 10%;
+  background-color: rgba(184, 43, 43, 0.288);
+  z-index: 999;
 }
 
 /*# sourceMappingURL=styles.css.map */

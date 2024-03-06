@@ -1,3 +1,5 @@
+const Main = document.querySelector('main');
+console.log(Main);
 const Btn = document.querySelectorAll('button');
 const AddBtn = Btn[0];
 const EditBtn = Btn[1];
@@ -8,17 +10,41 @@ const modal = document.getElementById('myModal');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.querySelector('.close');
 
-
 AddBtn.addEventListener('click', () => {
-    modal.style.display = 'block'
-    overlay.style.display = 'block'
+    CreateModal();
 })
 
-closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none'
-    overlay.style.display = 'none'
-})
+function CreateModal() {
+    const Div = document.createElement('div');
+    Div.classList.add('modal');
+    
+    const ModalContent = document.createElement('div');
+    ModalContent.classList.add('modal-content');
 
+    const CloseModal = document.createElement('button');
+    CloseModal.classList.add('close');
+    CloseModal.innerHTML = "Close";
+
+    const Paragraph = document.createElement('p');
+    Paragraph.innerHTML = "Teste";
+
+    const Overlay = document.createElement('div');
+    Overlay.classList.add('overlay');
+
+    CloseModal.addEventListener('click', () => {
+        Div.classList.remove('modal');
+        CloseModal.classList.remove('close');
+        Div.innerHTML = "";
+        CloseModal.innerHTML = "";
+        Overlay.classList.remove('overlay');
+    })
+
+    Main.appendChild(Div);
+    Div.appendChild(ModalContent);
+    ModalContent.appendChild(Paragraph);
+    ModalContent.appendChild(CloseModal);
+    Main.appendChild(Overlay);
+}
 
 function UpdateHour() {
     const NewTime = new Date();

@@ -31,7 +31,7 @@ body header h1 {
   opacity: 75%;
 }
 body main {
-  height: 200px;
+  height: 300px;
   background-color: rgba(242, 193, 182, 0.7529411765);
   margin: auto;
   width: 80%;
@@ -69,7 +69,7 @@ body main .options-container button:hover {
 body main .time {
   position: relative;
   right: 15px;
-  top: 90px;
+  top: 195px;
   text-align: end;
   color: #BF6B6B;
 }

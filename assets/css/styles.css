@@ -63,8 +63,10 @@ body main .options-container button {
   padding: 1px;
 }
 body main .options-container button:hover {
+  background-color: #A63232;
   color: #D7D7D9;
-  transition: color 0.2s;
+  transition: color 0.5s;
+  transition: background-color 0.5s;
 }
 body main .time {
   position: relative;
@@ -86,6 +88,7 @@ body main .results div p {
   font-size: 1.2em;
 }
 
+/* JS classes */
 .modal {
   display: block;
   position: fixed;
@@ -112,8 +115,16 @@ body main .results div p {
   cursor: pointer;
   padding: 3px;
   border-radius: 8px;
-  background-color: antiquewhite;
+  background-color: rgba(56, 56, 56, 0.1098039216);
   border: 1px solid rgba(0, 0, 0, 0.267);
+  color: #D94E41;
+}
+
+.close:hover {
+  color: #A63232;
+  background-color: #DFE9F5;
+  transition: background-color 0.5s;
+  transition: color 0.5s;
 }
 
 .overlay {
@@ -125,31 +136,6 @@ body main .results div p {
   background-color: rgba(184, 43, 43, 0.288);
   z-index: 999;
   margin: auto;
-}
-
-/* Tablet */
-@media screen and (min-width: 630px) {
-  header, main {
-    max-width: 60%;
-  }
-  .modal {
-    max-width: 40%;
-  }
-  .overlay {
-    max-width: 60%;
-  }
-}
-/* Another devices */ 
-@media screen and (min-width: 1000px) {
-  header, main {
-    max-width: 35%;
-  }
-  .modal {
-    max-width: 25%;
-  }
-  .overlay {
-    max-width: 35%;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */

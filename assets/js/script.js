@@ -11,10 +11,6 @@ const overlay = document.getElementById('overlay');
 const closeBtn = document.querySelector('.close');
 
 AddBtn.addEventListener('click', () => {
-    CreateModal();
-})
-
-function CreateModal() {
     const Div = document.createElement('div');
     Div.classList.add('modal');
     
@@ -44,7 +40,7 @@ function CreateModal() {
     ModalContent.appendChild(Paragraph);
     ModalContent.appendChild(CloseModal);
     Main.appendChild(Overlay);
-}
+})
 
 function UpdateHour() {
     const NewTime = new Date();

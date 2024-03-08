@@ -1,6 +1,77 @@
 /* Colors */
 /* Blacks */
 /* Whites */
+/* Tablet */
+@media screen and (min-width: 630px) {
+  header, main {
+    max-width: 60%;
+  }
+  .modal {
+    max-width: 40%;
+  }
+  .overlay {
+    max-width: 60%;
+  }
+}
+/* Another devices */ 
+@media screen and (min-width: 1000px) {
+  header, main {
+    max-width: 35%;
+  }
+  .modal {
+    max-width: 25%;
+  }
+  .overlay {
+    max-width: 35%;
+  }
+}
+/* JS classes */
+.modal {
+  display: block;
+  position: fixed;
+  width: 75%;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.modal .modal-content {
+  position: relative;
+}
+.modal .close {
+  position: relative;
+  top: 15px;
+  left: 48%;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 8px;
+  background-color: rgba(56, 56, 56, 0.1098039216);
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  color: #D94E41;
+}
+.modal .close:hover {
+  color: #A63232;
+  background-color: #DFE9F5;
+  transition: background-color 0.5s;
+  transition: color 0.5s;
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  top: 0px;
+  width: 80%;
+  height: 100%;
+  background-color: rgba(184, 43, 43, 0.288);
+  z-index: 999;
+  margin: auto;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -86,56 +157,6 @@ body main .results div {
 body main .results div p {
   padding: 10px;
   font-size: 1.2em;
-}
-
-/* JS classes */
-.modal {
-  display: block;
-  position: fixed;
-  width: 75%;
-  z-index: 1000;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  position: relative;
-}
-
-.close {
-  position: relative;
-  top: 15px;
-  left: 90%;
-  cursor: pointer;
-  padding: 3px;
-  border-radius: 8px;
-  background-color: rgba(56, 56, 56, 0.1098039216);
-  border: 1px solid rgba(0, 0, 0, 0.267);
-  color: #D94E41;
-}
-
-.close:hover {
-  color: #A63232;
-  background-color: #DFE9F5;
-  transition: background-color 0.5s;
-  transition: color 0.5s;
-}
-
-.overlay {
-  display: block;
-  position: absolute;
-  top: 0px;
-  width: 80%;
-  height: 100%;
-  background-color: rgba(184, 43, 43, 0.288);
-  z-index: 999;
-  margin: auto;
 }
 
 /*# sourceMappingURL=styles.css.map */

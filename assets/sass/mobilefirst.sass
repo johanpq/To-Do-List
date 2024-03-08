@@ -1,4 +1,6 @@
 @use 'partials/_variables'
+@use 'partials/_mediaqueries'
+@use 'partials/_seletorsJs' 
 
 *
     padding: 0px
@@ -9,11 +11,11 @@
 body
     background-color: variables.$First-color 
     width: 100vw 
-    position: absolute
+    position: absolute 
     left: 50%
     top: 50%
-    transform: translate(-50%, -50%) 
-
+    transform: translate(-50%, -50%)   
+ 
 
     header   
         width: 80%     
@@ -89,49 +91,4 @@ body
 
                 p   
                     padding: 10px  
-                    font-size: 1.2em 
-
-/* JS classes */
-.modal
-    display: block 
-    position: fixed  
-    width: 75%       
-    z-index: 1000
-    left: 50% 
-    top: 50% 
-    transform: translate(-50%, -50%)  
-    background-color: white
-    padding: 20px
-    border: 1px solid #ccc 
-    border-radius: 15px 
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) 
-
-.modal-content
-    position: relative
-
-.close 
-    position: relative 
-    top: 15px 
-    left: 90%     
-    cursor: pointer   
-    padding: 3px 
-    border-radius: 8px
-    background-color: variables.$Sixth-color
-    border: 1px solid rgba(0, 0, 0, 0.267)
-    color: variables.$Third-color
-
-.close:hover 
-    color: variables.$Forth-color
-    background-color: variables.$Seventh-color
-    transition: background-color 0.5s
-    transition: color 0.5s
-
-.overlay 
-    display: block
-    position: absolute
-    top: 0px
-    width: 80%
-    height: 100%
-    background-color: rgba(184, 43, 43, 0.288) 
-    z-index: 999
-    margin: auto
+                    font-size: 1.2em  

@@ -30,6 +30,7 @@ AddBtn.addEventListener('click', () => {
     const TextInput = document.createElement('input');
     TextInput.setAttribute('type', 'text');
     TextInput.setAttribute('placeholder', "Type here");
+    TextInput.classList.add('TextInput');
 
     CloseModal.addEventListener('click', () => {
         Div.classList.remove('modal');

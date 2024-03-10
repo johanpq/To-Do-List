@@ -17,10 +17,6 @@ AddBtn.addEventListener('click', () => {
     const ModalContent = document.createElement('div');
     ModalContent.classList.add('modal-content');
 
-    const CloseModal = document.createElement('button');
-    CloseModal.classList.add('close');
-    CloseModal.innerHTML = "Close";
-
     /* const Paragraph = document.createElement('p');
     Paragraph.innerHTML = "Teste"; */
 
@@ -31,6 +27,15 @@ AddBtn.addEventListener('click', () => {
     TextInput.setAttribute('type', 'text');
     TextInput.setAttribute('placeholder', "Type here");
     TextInput.classList.add('TextInput');
+
+    const SubmitInput = document.createElement('input');
+    SubmitInput.setAttribute('type', 'submit');
+    SubmitInput.setAttribute('value', "Submit");
+    SubmitInput.classList.add('SubmitInput'); 
+
+    const CloseModal = document.createElement('button');
+    CloseModal.classList.add('close');
+    CloseModal.innerHTML = "Close";
 
     CloseModal.addEventListener('click', () => {
         Div.classList.remove('modal');
@@ -43,6 +48,7 @@ AddBtn.addEventListener('click', () => {
     Main.appendChild(Div);
     Div.appendChild(ModalContent);
     ModalContent.appendChild(TextInput);
+    ModalContent.appendChild(SubmitInput);
     ModalContent.appendChild(CloseModal);
     Main.appendChild(Overlay);
 })

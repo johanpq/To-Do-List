@@ -4,11 +4,15 @@ const Btn = document.querySelectorAll('button');
 const AddBtn = Btn[0];
 const EditBtn = Btn[1];
 const RemoveBtn = Btn[2];
+const Result = document.querySelector('.results');
 const Time = document.querySelector('div.time');
 
 const modal = document.getElementById('myModal');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.querySelector('.close');
+
+const TextInput = document.createElement('input');
+const SubmitInput = document.createElement('input');
 
 AddBtn.addEventListener('click', () => {
     const Div = document.createElement('div');
@@ -23,12 +27,10 @@ AddBtn.addEventListener('click', () => {
     const Overlay = document.createElement('div');
     Overlay.classList.add('overlay');
 
-    const TextInput = document.createElement('input');
     TextInput.setAttribute('type', 'text');
     TextInput.setAttribute('placeholder', "Type here");
     TextInput.classList.add('TextInput');
 
-    const SubmitInput = document.createElement('input');
     SubmitInput.setAttribute('type', 'submit');
     SubmitInput.setAttribute('value', "Submit");
     SubmitInput.classList.add('SubmitInput'); 
@@ -51,6 +53,18 @@ AddBtn.addEventListener('click', () => {
     ModalContent.appendChild(SubmitInput);
     ModalContent.appendChild(CloseModal);
     Main.appendChild(Overlay);
+})
+
+const Print = SubmitInput.addEventListener('click', () => {
+    const Div = document.createElement('div');
+    const Paragraph = document.createElement('p');
+    if(TextInput.value != "") {
+        Paragraph.innerHTML = TextInput.value;
+        Result.appendChild(Div);
+        Div.appendChild(Paragraph);
+    } else {
+        alert("Não há nada!");
+    }
 })
 
 function UpdateHour() {

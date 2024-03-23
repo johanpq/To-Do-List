@@ -72,6 +72,19 @@ EditBtn.addEventListener('click', () => {
     const Overlay = document.createElement('div');
     Overlay.classList.add('overlay');
 
+    List.map((Element) => {
+        const DivFather = document.createElement('div');
+        DivFather.classList.add('EditBtnModalContent');
+ 
+        const DivElements = document.createElement('div');
+        DivElements.classList.add('ArrayList');
+
+        DivElements.innerHTML = Element;
+
+        ModalContent.appendChild(DivFather);
+        DivFather.appendChild(DivElements); 
+    })
+
     const CloseModal = document.createElement('button');
     CloseModal.classList.add('close');
     CloseModal.innerHTML = "Close";

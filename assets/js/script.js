@@ -62,6 +62,34 @@ AddBtn.addEventListener('click', () => {
     Main.appendChild(Overlay);
 })
 
+EditBtn.addEventListener('click', () => {
+    const Div = document.createElement('div');
+    Div.classList.add('modal');
+    
+    const ModalContent = document.createElement('div');
+    ModalContent.classList.add('modal-content');
+
+    const Overlay = document.createElement('div');
+    Overlay.classList.add('overlay');
+
+    const CloseModal = document.createElement('button');
+    CloseModal.classList.add('close');
+    CloseModal.innerHTML = "Close";
+
+    CloseModal.addEventListener('click', () => {
+        Div.classList.remove('modal');
+        CloseModal.classList.remove('close');
+        Div.innerHTML = "";
+        CloseModal.innerHTML = "";
+        Overlay.classList.remove('overlay');
+    })
+
+    Main.appendChild(Div);
+    Div.appendChild(ModalContent);
+    ModalContent.appendChild(CloseModal);
+    Main.appendChild(Overlay);
+})
+
 const Print = SubmitInput.addEventListener('click', () => {
     const Div = document.createElement('div');
     const Paragraph = document.createElement('p');

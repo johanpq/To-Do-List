@@ -14,15 +14,22 @@ const closeBtn = document.querySelector('.close');
 const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
+const List = ["Johan", "Pedro", "Queiroz"];
+
+const AddArrayElements = SubmitInput.addEventListener('click', () => {
+    if(TextInput.value != "") {
+        List.push(TextInput.value);
+    }
+})
+
+console.log(List);
+
 AddBtn.addEventListener('click', () => {
     const Div = document.createElement('div');
     Div.classList.add('modal');
     
     const ModalContent = document.createElement('div');
     ModalContent.classList.add('modal-content');
-
-    /* const Paragraph = document.createElement('p');
-    Paragraph.innerHTML = "Teste"; */
 
     const Overlay = document.createElement('div');
     Overlay.classList.add('overlay');

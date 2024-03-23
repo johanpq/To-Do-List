@@ -1,0 +1,39 @@
+@use '_variables' 
+
+@mixin Modal
+    display: block 
+    position: fixed  
+    width: 75%       
+    z-index: 1000
+    left: 50% 
+    top: 50% 
+    transform: translate(-50%, -50%)  
+    background-color: white
+    padding: 40px
+    border: 1px solid #ccc 
+    border-radius: 15px 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+
+@mixin Close
+    display: block 
+    position: absolute    
+    color: variables.$Fith-color
+    cursor: pointer    
+    border-radius: 8px
+    background-color: variables.$Seventh-color 
+    border: 1px solid rgba(0, 0, 0, 0.267)
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.267)
+    padding: 5px
+    bottom: 2px
+    right: 5px 
+
+
+@mixin Overlay 
+    display: block
+    position: absolute
+    top: 0px
+    width: 80%
+    height: 100%
+    background-color: rgba(184, 43, 43, 0.288) 
+    z-index: 999
+    margin: auto

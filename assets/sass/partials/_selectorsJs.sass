@@ -14,7 +14,7 @@
         align-content: center 
         margin: 15px 
         gap: 5px   
-
+ 
         .TextInput  
             position: relative
             padding: 8px       
@@ -48,7 +48,40 @@
             color: variables.$Forth-color
             background-color: variables.$Seventh-color
             transition: background-color 0.5s
-            transition: color 0.5s
+            transition: color 0.5s  
 
 .overlay 
-    @include mixins.Overlay 
+    @include mixins.Overlay  
+
+
+/* Edit Btn */ 
+
+.ModalContainerEditBtn
+    @include mixins.Modal  
+    width: 70%         
+    height: 80%          
+
+    .EditBtnModalContent 
+        display: flex
+        flex-direction: column  
+        height: 100%                
+        gap: 10px      
+        overflow-y: auto  
+        overflow-x: hidden 
+        @include mixins.DivElement    
+
+        .img 
+            display: inline
+            position: relative
+            right: -20px           
+            cursor: pointer
+         
+
+        .DivElement   
+            @include mixins.DivElement 
+            width: 100% 
+            text-align: center      
+            
+        
+        .closeEditModal 
+            @include mixins.Close

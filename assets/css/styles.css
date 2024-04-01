@@ -6,7 +6,7 @@
   header, main {
     max-width: 60%;
   }
-  .modal {
+  .modal, .ModalContainerEditBtn {
     max-width: 40%;
   }
   .overlay {
@@ -18,7 +18,7 @@
   header, main {
     max-width: 35%;
   }
-  .modal {
+  .modal, .ModalContainerEditBtn {
     max-width: 25%;
   }
   .overlay {
@@ -29,7 +29,7 @@
 /* Add Btn */
 .modal {
   display: block;
-  position: fixed;
+  position: absolute;
   width: 75%;
   z-index: 1000;
   left: 50%;
@@ -104,6 +104,69 @@
   background-color: rgba(184, 43, 43, 0.288);
   z-index: 999;
   margin: auto;
+}
+
+/* Edit Btn */ 
+.ModalContainerEditBtn {
+  display: block;
+  position: absolute;
+  width: 75%;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  width: 70%;
+  height: 80%;
+}
+.ModalContainerEditBtn .EditBtnModalContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid rgba(56, 56, 56, 0.1098039216);
+  background-color: #D7D7D9;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  margin: 5px auto 0px auto;
+  padding: 5px;
+}
+.ModalContainerEditBtn .EditBtnModalContent .img {
+  display: inline;
+  position: relative;
+  right: -20px;
+  cursor: pointer;
+}
+.ModalContainerEditBtn .EditBtnModalContent .DivElement {
+  border: 1px solid rgba(56, 56, 56, 0.1098039216);
+  background-color: #D7D7D9;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  margin: 5px auto 0px auto;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+}
+.ModalContainerEditBtn .EditBtnModalContent .closeEditModal {
+  display: block;
+  position: absolute;
+  color: #BF6B6B;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #DFE9F5;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.267);
+  padding: 5px;
+  bottom: 2px;
+  right: 5px;
 }
 
 * {

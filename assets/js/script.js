@@ -14,7 +14,7 @@ const closeBtn = document.querySelector('.close');
 const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
-const List = ["Johan", "Pedro", "Queiroz"];
+const List = ["Johanas", "Pedro", "Queiroz", "Raul", "João Paulo", "Maria", "Rego"];
 
 const AddArrayElements = SubmitInput.addEventListener('click', () => {
     if(TextInput.value != "") {
@@ -64,36 +64,37 @@ AddBtn.addEventListener('click', () => {
 
 EditBtn.addEventListener('click', () => {
     const Div = document.createElement('div');
-    Div.classList.add('modal');
-    
+    Div.classList.add('ModalContainerEditBtn');
+     
     const ModalContent = document.createElement('div');
-    ModalContent.classList.add('modal-content');
+    ModalContent.classList.add('EditBtnModalContent');
 
     const Overlay = document.createElement('div');
-    Overlay.classList.add('overlay');
+    Overlay.classList.add('overlay'); 
 
     List.map((Element) => {
-        const DivFather = document.createElement('div');
-        DivFather.classList.add('EditBtnModalContent');
- 
-        const DivElements = document.createElement('div');
-        DivElements.classList.add('ArrayList');
+        const DivElement = document.createElement('div');
+        DivElement.classList.add('DivElement');
 
-        DivElements.innerHTML = Element;
+        const Emoji = document.createElement('img');
+        Emoji.classList.add('img');    
+        Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');   
 
-        ModalContent.appendChild(DivFather);
-        DivFather.appendChild(DivElements); 
+        DivElement.innerHTML = Element; 
+
+        ModalContent.appendChild(DivElement);
+        DivElement.appendChild(Emoji);    
     })
 
     const CloseModal = document.createElement('button');
-    CloseModal.classList.add('close');
+    CloseModal.classList.add('closeEditModal');
     CloseModal.innerHTML = "Close";
 
     CloseModal.addEventListener('click', () => {
-        Div.classList.remove('modal');
-        CloseModal.classList.remove('close');
+        Div.classList.remove('ModalContainerEditBtn'); 
+        CloseModal.classList.remove('CloseEditModal');
         Div.innerHTML = "";
-        CloseModal.innerHTML = "";
+        CloseModal.innerHTML = ""; 
         Overlay.classList.remove('overlay');
     })
 

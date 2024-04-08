@@ -73,17 +73,22 @@ EditBtn.addEventListener('click', () => {
     Overlay.classList.add('overlay'); 
 
     List.map((Element) => {
+        const Contents = document.createElement('div');
+        Contents.classList.add('contents');
         const DivElement = document.createElement('div');
         DivElement.classList.add('DivElement');
 
-        const Emoji = document.createElement('img');
+        const Emoji = document.createElement('img'); 
         Emoji.classList.add('img');    
-        Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');   
+        Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');    
 
         DivElement.innerHTML = Element; 
-
-        ModalContent.appendChild(DivElement);
-        DivElement.appendChild(Emoji);    
+        
+        console.log(Emoji);  
+        
+        ModalContent.appendChild(Contents);
+        Contents.appendChild(DivElement);         
+        Contents.appendChild(Emoji); 
     })
 
     const CloseModal = document.createElement('button');
@@ -100,7 +105,7 @@ EditBtn.addEventListener('click', () => {
 
     Main.appendChild(Div);
     Div.appendChild(ModalContent);
-    ModalContent.appendChild(CloseModal);
+    Div.appendChild(CloseModal);
     Main.appendChild(Overlay);
 })
 

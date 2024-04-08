@@ -35,7 +35,7 @@
             position: relative
             padding: 5px
             border-radius: 8px 
-            cursor: pointer 
+            cursor: pointer  
             border: 1px solid rgba(0, 0, 0, 0.158) 
             box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.171)
             background-color: variables.$Sixth-color      
@@ -46,42 +46,45 @@
 
         .close:hover  
             color: variables.$Forth-color
-            background-color: variables.$Seventh-color
+            background-color: variables.$Seventh-color 
             transition: background-color 0.5s
             transition: color 0.5s  
 
 .overlay 
-    @include mixins.Overlay  
+    @include mixins.Overlay   
 
 
 /* Edit Btn */ 
 
-.ModalContainerEditBtn
-    @include mixins.Modal  
-    width: 70%         
+.ModalContainerEditBtn 
+    @include mixins.Modal   
+    width: 70%          
     height: 80%          
 
     .EditBtnModalContent 
-        display: flex
-        flex-direction: column  
+        display: flex   
+        flex-direction: column     
         height: 100%                
-        gap: 10px      
-        overflow-y: auto  
-        overflow-x: hidden 
-        @include mixins.DivElement    
+        gap: 10px       
+        overflow-y: auto    
+        overflow-x: hidden     
+        @include mixins.DivElement      
+  
+        .img         
+            color: white 
+            height: 30px       
+            width: 30px    
+            cursor: pointer  
 
-        .img 
-            display: inline
-            position: relative
-            right: -20px           
-            cursor: pointer
-         
+        .contents
+            display: flex   
+            flex-direction: row       
 
-        .DivElement   
-            @include mixins.DivElement 
-            width: 100% 
-            text-align: center      
+            .DivElement          
+                @include mixins.DivElement  
+                width: 50%      
+                
             
-        
-        .closeEditModal 
-            @include mixins.Close
+    .closeEditModal 
+        @include mixins.Close   
+                

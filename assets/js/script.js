@@ -14,7 +14,7 @@ const closeBtn = document.querySelector('.close');
 const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
-const List = ["Johanas", "Pedro", "Queiroz", "Raul", "João Paulo", "Maria", "Rego"];
+const List = [];
 
 const AddArrayElements = SubmitInput.addEventListener('click', () => {
     if(TextInput.value != "") {
@@ -62,101 +62,122 @@ AddBtn.addEventListener('click', () => {
     Main.appendChild(Overlay);
 })
 
-EditBtn.addEventListener('click', () => {
-    const Div = document.createElement('div');
-    Div.classList.add('ModalContainerEditBtn');
-     
-    const ModalContent = document.createElement('div');
-    ModalContent.classList.add('EditBtnModalContent');
-
-    const Overlay = document.createElement('div');
-    Overlay.classList.add('overlay'); 
-
-    List.map((Element, indice) => {
-        const Contents = document.createElement('div');
-        Contents.classList.add('contents');
-        const DivElement = document.createElement('div');
-        DivElement.classList.add('DivElement');
-        DivElement.classList.add('edit' + indice);
-
-        const Emoji = document.createElement('img'); 
-        Emoji.classList.add('img');    
-        Emoji.classList.add('edit' + indice);
-        Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');    
-
-        DivElement.innerHTML = Element;  
-
-        Emoji.addEventListener('click', (event) => {
-            const target = event.target;
-            const ClassList = target.classList;
-            
-            for(let i of ClassList) {
-                const Icon1 = document.createElement('img');
-                Icon1.innerHTML = "Done";
-                Icon1.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png');
-                const Icon2 = document.createElement('img');
-                Icon2.innerHTML = "Close";
-                Icon2.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png');
-
-                if(DivElement.classList.contains(i)) {
-                    DivElement.setAttribute('contenteditable', 'true');
-                    const PreviousElement = DivElement.textContent; 
-
-                    Emoji.style.display = 'none';
-                    Icon1.classList.add('icons');
-                    Icon1.addEventListener('click', () => {
-                        Icon1.style.display = 'none';
-                        Icon2.style.display = 'none';
-                        Emoji.style.display = 'block';
-                        DivElement.setAttribute('contenteditable', 'false');
-                    })
-
-                    Icon2.classList.add('icons');
-                    Icon2.addEventListener('click', () => {
-                        Icon1.style.display = 'none';
-                        Icon2.style.display = 'none';
-                        Emoji.style.display = 'block';
-                        DivElement.textContent = PreviousElement;
-                        DivElement.setAttribute('contenteditable', 'false');
-                    })
-
-                    DivElement.focus();
-                    Contents.appendChild(Icon1);
-                    Contents.appendChild(Icon2);
-                }
-            }
-        }) 
+const CreateEditModal = EditBtn.addEventListener('click', () => {
+    if(List.length == 0) {
+        console.log("Nothing to edit!");
+    } else {
+        const Div = document.createElement('div');
+        Div.classList.add('ModalContainerEditBtn');
         
-        ModalContent.appendChild(Contents);
-        Contents.appendChild(DivElement);         
-        Contents.appendChild(Emoji); 
-    })
+        const ModalContent = document.createElement('div');
+        ModalContent.classList.add('EditBtnModalContent');
 
-    const CloseModal = document.createElement('button');
-    CloseModal.classList.add('closeEditModal');
-    CloseModal.innerHTML = "Close";
+        const Overlay = document.createElement('div');
+        Overlay.classList.add('overlay'); 
 
-    CloseModal.addEventListener('click', () => {
-        Div.classList.remove('ModalContainerEditBtn'); 
-        CloseModal.classList.remove('CloseEditModal');
-        Div.innerHTML = "";
-        CloseModal.innerHTML = ""; 
-        Overlay.classList.remove('overlay');
-    })
+        List.map((Element, indice) => {
+            const Contents = document.createElement('div');
+            Contents.classList.add('contents');
+            const DivElement = document.createElement('div');
+            DivElement.classList.add('DivElement');
+            DivElement.classList.add('edit' + indice);
 
-    Main.appendChild(Div);
-    Div.appendChild(ModalContent);
-    Div.appendChild(CloseModal);
-    Main.appendChild(Overlay);
-})
+            const Emoji = document.createElement('img'); 
+            Emoji.classList.add('img');      
+            Emoji.classList.add('edit' + indice); 
+            Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');    
+
+            DivElement.innerHTML = Element;  
+
+            Emoji.addEventListener('click', (event) => {
+                const target = event.target;
+                const ClassList = target.classList; 
+                
+                for(let i of ClassList) {
+                    const Icon1 = document.createElement(   'img');
+                    Icon1.innerHTML = "Done";
+                    Icon1.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png');
+                    const Icon2 = document.createElement('img');
+                    Icon2.innerHTML = "Close";
+                    Icon2.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png');
+
+                    if(DivElement.classList.contains(i)) {
+                        DivElement.setAttribute('contenteditable', 'true');
+                        const PreviousElement = DivElement.textContent; 
+
+                        Emoji.style.display = 'none';
+                        Icon1.classList.add('icons');
+                        Icon1.addEventListener('click', () => {
+                            Icon1.style.display = 'none';
+                            Icon2.style.display = 'none';
+                            Emoji.style.display = 'block';
+                            DivElement.setAttribute('contenteditable', 'false');
+                            //Atualiza o valor na lista List
+                            List[indice] = DivElement.textContent;
+
+                            //Limpa o conteúdo atual na exibição
+                            Result.innerHTML = '';
+
+                            //Reexibe os elementos na exibição
+                            List.forEach((element) => {
+                                const Div = document.createElement('div');
+                                const Paragraph = document.createElement('p');
+                                Paragraph.innerHTML = element;
+                                Result.appendChild(Div);
+                                Div.appendChild(Paragraph);
+                            });
+                        })
+
+                        Icon2.classList.add('icons');
+                        Icon2.addEventListener('click', () => {
+                            Icon1.style.display = 'none';
+                            Icon2.style.display = 'none';
+                            Emoji.style.display = 'block';
+                            DivElement.textContent = PreviousElement;
+                            DivElement.setAttribute('contenteditable', 'false');
+                        })
+
+                        DivElement.focus();
+                        Contents.appendChild(Icon1);
+                        Contents.appendChild(Icon2);
+                    }
+                }
+            }) 
+            
+            ModalContent.appendChild(Contents);
+            Contents.appendChild(DivElement);         
+            Contents.appendChild(Emoji); 
+        })
+
+        const CloseModal = document.createElement('button');
+        CloseModal.classList.add('closeEditModal');
+        CloseModal.innerHTML = "Close";
+
+        CloseModal.addEventListener('click', () => {
+            Div.classList.remove('ModalContainerEditBtn'); 
+            CloseModal.classList.remove('CloseEditModal');
+            Div.innerHTML = "";
+            CloseModal.innerHTML = ""; 
+            Overlay.classList.remove('overlay');
+        })
+
+        Main.appendChild(Div);
+        Div.appendChild(ModalContent);
+        Div.appendChild(CloseModal);
+        Main.appendChild(Overlay);
+    }
+}) 
 
 const Print = SubmitInput.addEventListener('click', () => {
     const Div = document.createElement('div');
     const Paragraph = document.createElement('p');
-    if(TextInput.value != "") {
-        Paragraph.innerHTML = TextInput.value;
-        Result.appendChild(Div);
-        Div.appendChild(Paragraph);
+    if(List != null) {
+        List.map((Elements) => {
+            Paragraph.innerHTML = Elements;
+            console.log(List);
+            Result.appendChild(Div);
+            Div.appendChild(Paragraph);
+        })
     } else {
         alert("Não há nada!");
     }

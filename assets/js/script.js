@@ -119,13 +119,7 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
                             Result.innerHTML = '';
 
                             //Reexibe os elementos na exibição
-                            List.forEach((element) => {
-                                const Div = document.createElement('div');
-                                const Paragraph = document.createElement('p');
-                                Paragraph.innerHTML = element;
-                                Result.appendChild(Div);
-                                Div.appendChild(Paragraph);
-                            });
+                            ReUpdateElements();
                         })
 
                         Icon2.classList.add('icons');
@@ -168,6 +162,80 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
     }
 }) 
 
+const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
+    if(List.length == 0) {
+        console.log("Nothing to edit!");
+    } else {
+        const Div = document.createElement('div');
+        Div.classList.add('ModalContainerEditBtn');
+        
+        const ModalContent = document.createElement('div');
+        ModalContent.classList.add('EditBtnModalContent');
+
+        const Overlay = document.createElement('div');
+        Overlay.classList.add('overlay'); 
+
+        List.map((Elements, indice) => {
+            const Contents = document.createElement('div');
+            Contents.classList.add('contents');
+            const DivElement = document.createElement('div');
+            DivElement.classList.add('DivElement');
+            DivElement.classList.add('edit' + indice);
+            
+            const Emoji = document.createElement('img'); 
+            Emoji.classList.add('img');      
+            Emoji.classList.add('edit' + indice); 
+            Emoji.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png');
+
+            DivElement.innerHTML = Elements;
+
+            Emoji.addEventListener('click', (evt) => {
+                const ElementSelected = evt.target;
+                const ClassList = ElementSelected.classList;
+
+                for(let i of ClassList) {
+                    if(DivElement.classList.contains(i)) {
+                        const TextElement = DivElement.textContent;
+                        const IndexOfElement = List.indexOf(TextElement);
+                        List.pop(IndexOfElement);
+                        console.log(IndexOfElement);
+                        Contents.remove();
+                        
+                        //Limpa o conteúdo atual na exibição
+                        Result.innerHTML = '';
+
+                        //Reexibe os elementos na exibição
+                        ReUpdateElements();
+                        //ReUpdateElements();
+                    }
+                }
+
+            })
+
+            ModalContent.appendChild(Contents);
+            Contents.appendChild(DivElement);         
+            Contents.appendChild(Emoji);
+        })
+
+        const CloseModal = document.createElement('button');
+        CloseModal.classList.add('closeEditModal');
+        CloseModal.innerHTML = "Close";
+
+        CloseModal.addEventListener('click', () => {
+            Div.classList.remove('ModalContainerEditBtn'); 
+            CloseModal.classList.remove('CloseEditModal');
+            Div.innerHTML = "";
+            CloseModal.innerHTML = ""; 
+            Overlay.classList.remove('overlay');
+        })
+
+        Main.appendChild(Div);
+        Div.appendChild(ModalContent);
+        Div.appendChild(CloseModal);
+        Main.appendChild(Overlay);
+    }
+})
+
 const Print = SubmitInput.addEventListener('click', () => {
     const Div = document.createElement('div');
     const Paragraph = document.createElement('p');
@@ -179,9 +247,19 @@ const Print = SubmitInput.addEventListener('click', () => {
             Div.appendChild(Paragraph);
         })
     } else {
-        alert("Não há nada!");
+        alert("There is no anything!");
     }
-})
+}) 
+
+function ReUpdateElements() {
+    List.forEach((element) => {
+        const Div = document.createElement('div');
+        const Paragraph = document.createElement('p');
+        Paragraph.innerHTML = element;
+        Result.appendChild(Div);
+        Div.appendChild(Paragraph);
+    });
+}
 
 function UpdateHour() {
     const NewTime = new Date();

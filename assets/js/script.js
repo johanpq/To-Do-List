@@ -14,8 +14,6 @@ const closeBtn = document.querySelector('.close');
 const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
-const AlertMessage = "There is no any task!";
-
 const List = [];
 
 const AddArrayElements = SubmitInput.addEventListener('click', () => {
@@ -66,7 +64,7 @@ AddBtn.addEventListener('click', () => {
 
 const CreateEditModal = EditBtn.addEventListener('click', () => {
     if(List.length == 0) {
-        Modal(AlertMessage);
+        ModalAlert();
     } else {
         const Div = document.createElement('div');
         Div.classList.add('ModalContainerEditBtn');
@@ -166,7 +164,7 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
 
 const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
     if(List.length == 0) {
-        Modal(AlertMessage);
+        ModalAlert();
     } else {
         const Div = document.createElement('div');
         Div.classList.add('ModalContainerEditBtn');
@@ -253,7 +251,7 @@ const Print = SubmitInput.addEventListener('click', () => {
     }
 }) 
 
-function Modal(Message) {
+function ModalAlert() {
         const Div = document.createElement('div');
         Div.classList.add('modal');
         const ModalContent = document.createElement('div');
@@ -261,9 +259,9 @@ function Modal(Message) {
 
         const Overlay = document.createElement('div');
         Overlay.classList.add('overlay');
-
-        const message = document.createElement('div');
-        message.innerHTML = Message;
+ 
+        const AlertMessage = document.createElement('div');
+        AlertMessage.innerHTML = "There is no any task!";
 
         const CloseModal = document.createElement('button');
         CloseModal.classList.add('close');
@@ -279,7 +277,7 @@ function Modal(Message) {
 
         Main.appendChild(Div);
         Div.appendChild(ModalContent);
-        ModalContent.appendChild(message);
+        ModalContent.appendChild(AlertMessage);
         ModalContent.appendChild(CloseModal);
         Main.appendChild(Overlay);
 }

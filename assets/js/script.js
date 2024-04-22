@@ -14,6 +14,8 @@ const closeBtn = document.querySelector('.close');
 const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
+const AlertMessage = "There is no any task!";
+
 const List = [];
 
 const AddArrayElements = SubmitInput.addEventListener('click', () => {
@@ -64,7 +66,7 @@ AddBtn.addEventListener('click', () => {
 
 const CreateEditModal = EditBtn.addEventListener('click', () => {
     if(List.length == 0) {
-        console.log("Nothing to edit!");
+        Modal(AlertMessage);
     } else {
         const Div = document.createElement('div');
         Div.classList.add('ModalContainerEditBtn');
@@ -164,7 +166,7 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
 
 const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
     if(List.length == 0) {
-        console.log("Nothing to edit!");
+        Modal(AlertMessage);
     } else {
         const Div = document.createElement('div');
         Div.classList.add('ModalContainerEditBtn');
@@ -250,6 +252,37 @@ const Print = SubmitInput.addEventListener('click', () => {
         alert("There is no anything!");
     }
 }) 
+
+function Modal(Message) {
+        const Div = document.createElement('div');
+        Div.classList.add('modal');
+        const ModalContent = document.createElement('div');
+        ModalContent.classList.add('modal-content');
+
+        const Overlay = document.createElement('div');
+        Overlay.classList.add('overlay');
+
+        const message = document.createElement('div');
+        message.innerHTML = Message;
+
+        const CloseModal = document.createElement('button');
+        CloseModal.classList.add('close');
+        CloseModal.innerHTML = "Close";
+
+        CloseModal.addEventListener('click', () => {
+            Div.classList.remove('modal');
+            CloseModal.classList.remove('close');
+            Div.innerHTML = "";
+            CloseModal.innerHTML = "";
+            Overlay.classList.remove('overlay');
+        })
+
+        Main.appendChild(Div);
+        Div.appendChild(ModalContent);
+        ModalContent.appendChild(message);
+        ModalContent.appendChild(CloseModal);
+        Main.appendChild(Overlay);
+}
 
 function ReUpdateElements() {
     List.forEach((element) => {

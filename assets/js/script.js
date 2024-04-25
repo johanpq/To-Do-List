@@ -147,13 +147,7 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
         CloseModal.classList.add('closeEditModal');
         CloseModal.innerHTML = "Close";
 
-        CloseModal.addEventListener('click', () => {
-            Div.classList.remove('ModalContainerEditBtn'); 
-            CloseModal.classList.remove('CloseEditModal');
-            Div.innerHTML = "";
-            CloseModal.innerHTML = ""; 
-            Overlay.classList.remove('overlay');
-        })
+        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
 
         Main.appendChild(Div);
         Div.appendChild(ModalContent);
@@ -221,13 +215,7 @@ const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
         CloseModal.classList.add('closeEditModal');
         CloseModal.innerHTML = "Close";
 
-        CloseModal.addEventListener('click', () => {
-            Div.classList.remove('ModalContainerEditBtn'); 
-            CloseModal.classList.remove('CloseEditModal');
-            Div.innerHTML = "";
-            CloseModal.innerHTML = ""; 
-            Overlay.classList.remove('overlay');
-        })
+        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
 
         Main.appendChild(Div);
         Div.appendChild(ModalContent);
@@ -250,6 +238,14 @@ const Print = SubmitInput.addEventListener('click', () => {
         alert("There is no anything!");
     }
 }) 
+
+function closeModal(Div, CloseModal, Overlay) {
+    Div.classList.remove('ModalContainerEditBtn'); 
+    CloseModal.classList.remove('CloseEditModal');
+    Div.innerHTML = "";
+    CloseModal.innerHTML = ""; 
+    Overlay.classList.remove('overlay'); 
+}
 
 function ModalAlert() {
         const Div = document.createElement('div');

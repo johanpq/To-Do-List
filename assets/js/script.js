@@ -11,16 +11,9 @@ const modal = document.getElementById('myModal');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.querySelector('.close');
 
-const TextInput = document.createElement('input');
 const SubmitInput = document.createElement('input');
 
-const List = [];
-
-const AddArrayElements = SubmitInput.addEventListener('click', () => {
-    if(TextInput.value != "") {
-        List.push(TextInput.value);
-    }
-})
+let List = [];
 
 //console.log(List);
 
@@ -34,33 +27,54 @@ AddBtn.addEventListener('click', () => {
     const Overlay = document.createElement('div');
     Overlay.classList.add('overlay');
 
-    TextInput.setAttribute('type', 'text');
-    TextInput.setAttribute('placeholder', "Type here");
-    TextInput.classList.add('TextInput');
+    const textInput = addTextInput();
+    
+    const submitInput = addSubmitInput();
 
-    SubmitInput.setAttribute('type', 'submit');
-    SubmitInput.setAttribute('value', "Submit");
-    SubmitInput.classList.add('SubmitInput'); 
+    submitInput.addEventListener('click', () => {
+        if(textInput.value.trim() !== "") {
+            List.push(textInput.value.trim());
+            Result.innerHTML = "";
+            Print();
+        }
+    })
+    
 
     const CloseModal = document.createElement('button');
     CloseModal.classList.add('close');
     CloseModal.innerHTML = "Close";
 
-    CloseModal.addEventListener('click', () => {
-        Div.classList.remove('modal');
-        CloseModal.classList.remove('close');
-        Div.innerHTML = "";
-        CloseModal.innerHTML = "";
-        Overlay.classList.remove('overlay');
-    })
+    CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
 
     Main.appendChild(Div);
     Div.appendChild(ModalContent);
-    ModalContent.appendChild(TextInput);
-    ModalContent.appendChild(SubmitInput);
+    ModalContent.appendChild(textInput);
+    ModalContent.appendChild(submitInput);
     ModalContent.appendChild(CloseModal);
     Main.appendChild(Overlay);
+
+    textInput.focus();
 })
+
+function addTextInput() {
+    const TextInput = document.createElement('input');
+
+    TextInput.setAttribute('type', 'text');
+    TextInput.setAttribute('placeholder', "Type here");
+    TextInput.classList.add('TextInput');
+
+    return TextInput;
+}
+
+function addSubmitInput() {
+    const SubmitInput = document.createElement('input');
+
+    SubmitInput.setAttribute('type', 'submit');
+    SubmitInput.setAttribute('value', "Submit");
+    SubmitInput.classList.add('SubmitInput');
+
+    return SubmitInput
+}
 
 const CreateEditModal = EditBtn.addEventListener('click', () => {
     if(List.length == 0) {
@@ -114,12 +128,11 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
                             DivElement.setAttribute('contenteditable', 'false');
                             //Atualiza o valor na lista List
                             List[indice] = DivElement.textContent;
-
-                            //Limpa o conteúdo atual na exibição
-                            Result.innerHTML = '';
+                           
+                            //console.log(List);
 
                             //Reexibe os elementos na exibição
-                            ReUpdateElements();
+                            Print();
                         })
 
                         Icon2.classList.add('icons');
@@ -187,22 +200,7 @@ const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
                 const ElementSelected = evt.target;
                 const ClassList = ElementSelected.classList;
 
-                for(let i of ClassList) {
-                    if(DivElement.classList.contains(i)) {
-                        const TextElement = DivElement.textContent;
-                        const IndexOfElement = List.indexOf(TextElement);
-                        List.pop(IndexOfElement);
-                        console.log(IndexOfElement);
-                        Contents.remove();
-                        
-                        //Limpa o conteúdo atual na exibição
-                        Result.innerHTML = '';
-
-                        //Reexibe os elementos na exibição
-                        ReUpdateElements();
-                        //ReUpdateElements();
-                    }
-                }
+                RemoveElement(ElementSelected, Contents);
 
             })
 
@@ -224,27 +222,34 @@ const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
     }
 })
 
-const Print = SubmitInput.addEventListener('click', () => {
-    const Div = document.createElement('div');
-    const Paragraph = document.createElement('p');
-    if(List != null) {
-        List.map((Elements) => {
-            Paragraph.innerHTML = Elements;
-            console.log(List);
-            Result.appendChild(Div);
-            Div.appendChild(Paragraph);
-        })
-    } else {
-        alert("There is no anything!");
-    }
-}) 
-
 function closeModal(Div, CloseModal, Overlay) {
+    Div.classList.remove('modal');
     Div.classList.remove('ModalContainerEditBtn'); 
     CloseModal.classList.remove('CloseEditModal');
     Div.innerHTML = "";
     CloseModal.innerHTML = ""; 
     Overlay.classList.remove('overlay'); 
+}
+
+function RemoveElement(Element, Contents) {
+    const elementText = Element.parentElement.querySelector('.DivElement').textContent;
+    const Index = List.findIndex((El) => El === elementText);
+    if(Index != -1) {
+        List.splice(Index, 1);
+        Contents.remove();
+        Print();
+    }
+}
+
+function Print() {
+    Result.innerHTML = "";
+    List.forEach((element) => {
+        const Div = document.createElement('div');
+        const Paragraph = document.createElement('p');
+        Paragraph.innerHTML = element;
+        Result.appendChild(Div);
+        Div.appendChild(Paragraph);
+    });
 }
 
 function ModalAlert() {
@@ -263,29 +268,13 @@ function ModalAlert() {
         CloseModal.classList.add('close');
         CloseModal.innerHTML = "Close";
 
-        CloseModal.addEventListener('click', () => {
-            Div.classList.remove('modal');
-            CloseModal.classList.remove('close');
-            Div.innerHTML = "";
-            CloseModal.innerHTML = "";
-            Overlay.classList.remove('overlay');
-        })
+        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
 
         Main.appendChild(Div);
         Div.appendChild(ModalContent);
         ModalContent.appendChild(AlertMessage);
         ModalContent.appendChild(CloseModal);
         Main.appendChild(Overlay);
-}
-
-function ReUpdateElements() {
-    List.forEach((element) => {
-        const Div = document.createElement('div');
-        const Paragraph = document.createElement('p');
-        Paragraph.innerHTML = element;
-        Result.appendChild(Div);
-        Div.appendChild(Paragraph);
-    });
 }
 
 function UpdateHour() {

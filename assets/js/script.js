@@ -262,6 +262,7 @@ function ModalAlert() {
         Overlay.classList.add('overlay');
  
         const AlertMessage = document.createElement('div');
+        AlertMessage.classList.add('NoTask');
         AlertMessage.innerHTML = "There is no any task!";
 
         const CloseModal = document.createElement('button');

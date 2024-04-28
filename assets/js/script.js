@@ -119,6 +119,20 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
                         DivElement.setAttribute('contenteditable', 'true');
                         const PreviousElement = DivElement.textContent; 
 
+                        // Limpa o conteúdo e reatribui para reposicionar o cursor
+                        DivElement.innerText = ''; // Limpa o conteúdo do elemento
+                        const originalText = PreviousElement; // Salva o texto original
+                        DivElement.innerText = originalText; // Adiciona o texto de volta ao elemento
+                        
+                        // Seleciona o texto e move o cursor para o final
+                        const selection = window.getSelection();
+                        const range = document.createRange();
+                        range.selectNodeContents(DivElement);
+                        range.collapse(false); // Move o cursor para o final
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                        
+
                         Emoji.style.display = 'none';
                         Icon1.classList.add('icons');
                         Icon1.addEventListener('click', () => {
@@ -126,10 +140,8 @@ const CreateEditModal = EditBtn.addEventListener('click', () => {
                             Icon2.style.display = 'none';
                             Emoji.style.display = 'block';
                             DivElement.setAttribute('contenteditable', 'false');
-                            //Atualiza o valor na lista List
+                            
                             List[indice] = DivElement.textContent;
-                           
-                            //console.log(List);
 
                             //Reexibe os elementos na exibição
                             Print();

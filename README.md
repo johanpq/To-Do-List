@@ -33,6 +33,7 @@ This application was developed using the following technologies:
 
 - HTML
 - CSS
+- Sass
 - JavaScript
 
 ## Vercel

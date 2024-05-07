@@ -43,10 +43,10 @@ This project is hosted on Vercel. Click [here](https://to-do-list-one-red.vercel
 
 This project was developed by Johan Queiroz.
 
-### Contributing
+## Contributing
 
 Feel free to contribute by adding new features, reporting issues, or suggesting improvements. Simply open an issue or submit a pull request to the project repository.
 
-### License
+## License
 
 This project is licensed under the [MIT License](LICENSE).

@@ -2,6 +2,8 @@
 
 This is a simple to-do list application with basic functionalities to add, edit, and remove items from the list.
 
+![To do List Screenshot](assets/images/image_2024-05-07_143128693.png)
+
 ## Functionalities
 
 - **Add Task:** First, click the "Add" button to open the text input field. Enter the desired task, then click the "Submit" button to add it to the list.
@@ -32,6 +34,14 @@ This application was developed using the following technologies:
 - HTML
 - CSS
 - JavaScript
+
+## Vercel
+
+This project is hosted on Vercel. Click [here](https://to-do-list-one-red.vercel.app) to view it.
+
+## Author
+
+This project was developed by Johan Queiroz.
 
 ### Contributing
 

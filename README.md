@@ -31,8 +31,8 @@ This is a simple to-do list application with basic functionalities to add, edit,
 
 This application was developed using the following technologies:
 
-- Html
-- Sass
+- HTML
+- SASS
 - JavaScript
 
 ## Vercel

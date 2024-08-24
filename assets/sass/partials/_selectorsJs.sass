@@ -67,7 +67,7 @@
   
 /* Edit Btn */ 
  
-.ModalContainerEditBtn 
+.ModalContainerWithElements 
     @include mixins.Modal   
     width: 75%                 
     height: 80%           
@@ -108,4 +108,13 @@
             
     .closeEditModal 
         @include mixins.Close   
+
+    .container-elements 
+        display: flex
+        flex-direction: row
+        width: 100%
+
+
+    .imgDone
+        cursor: pointer
                 

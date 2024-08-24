@@ -1,296 +1,476 @@
-const Main = document.querySelector('main');
-console.log(Main);
-const Btn = document.querySelectorAll('button');
-const AddBtn = Btn[0];
-const EditBtn = Btn[1];
-const RemoveBtn = Btn[2];
-const Result = document.querySelector('.results');
-const Time = document.querySelector('div.time');
+const buttons = document.querySelectorAll('button')
 
-const modal = document.getElementById('myModal');
-const overlay = document.getElementById('overlay');
-const closeBtn = document.querySelector('.close');
+const addBtn = buttons[0]
+const editBtn = buttons[1]
+const removeBtn = buttons[2]
 
-const SubmitInput = document.createElement('input');
+const completedTasks = document.querySelector('.svgs')
 
-let List = [];
+const result = document.querySelector('.results')
 
-//console.log(List);
+const time = document.querySelector('.time')
 
-AddBtn.addEventListener('click', () => {
-    const Div = document.createElement('div');
-    Div.classList.add('modal');
-    
-    const ModalContent = document.createElement('div');
-    ModalContent.classList.add('modal-content');
+let divContainer, divContent, textInput, btnSubmit, closeBtn
 
-    const Overlay = document.createElement('div');
-    Overlay.classList.add('overlay');
+let cont
 
-    const textInput = addTextInput();
-    
-    const submitInput = addSubmitInput();
+// Manipula o contador para não substituir valores no localStorage
+const getCont = localStorage.getItem("cont")
+console.log(getCont)
 
-    submitInput.addEventListener('click', () => {
-        if(textInput.value.trim() !== "") {
-            List.push(textInput.value.trim());
-            Result.innerHTML = "";
-            Print();
+if(getCont !== null) {
+    cont = getCont
+} else {
+    cont = 0
+}
+
+
+let controller = false
+
+function Task() {
+    this.task = []
+    this.completedTask = []
+}
+
+Task.prototype.addTask = function(task, id) {
+    this.task.push({task, id})
+}
+
+Task.prototype.addCompletedTask = function(task, id) {
+    const completedId = id + "completed"
+    this.completedTask.push({task, completedId})
+    localStorage.setItem(completedId, task)
+}
+
+Task.prototype.editTask = function(newTask, divId) {
+    this.task.forEach((el) => {
+        if (divId === el.id) {
+            el.task = newTask
+            const taskKey = el.id
+            localStorage.setItem(taskKey, newTask)
         }
     })
+    this.updateScreen()
+}
+
+Task.prototype.removeTask = function(id) {
+    const index = this.task.findIndex((el) => el.id === id)
     
+    // Remover do array de tarefas
+    if (index !== -1) {
+        this.task.splice(index, 1)
+    }
 
-    const CloseModal = document.createElement('button');
-    CloseModal.classList.add('close');
-    CloseModal.innerHTML = "Close";
-
-    CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
-
-    Main.appendChild(Div);
-    Div.appendChild(ModalContent);
-    ModalContent.appendChild(textInput);
-    ModalContent.appendChild(submitInput);
-    ModalContent.appendChild(CloseModal);
-    Main.appendChild(Overlay);
-
-    textInput.focus();
-})
-
-function addTextInput() {
-    const TextInput = document.createElement('input');
-
-    TextInput.setAttribute('type', 'text');
-    TextInput.setAttribute('placeholder', "Type here");
-    TextInput.classList.add('TextInput');
-
-    return TextInput;
+    // Remover do localStorage
+    localStorage.removeItem(id)
+    
+    // Verifica se o localStorage só tem o contador
+    if (localStorage.length === 1 && localStorage.key(0) === "cont") {
+        localStorage.clear()
+    }
+    
+    this.updateScreen()  // Atualiza a tela após a remoção
 }
 
-function addSubmitInput() {
-    const SubmitInput = document.createElement('input');
 
-    SubmitInput.setAttribute('type', 'submit');
-    SubmitInput.setAttribute('value', "Submit");
-    SubmitInput.classList.add('SubmitInput');
-
-    return SubmitInput
+Task.prototype.showAllTasks = function() {
+    return this.task.map(({task, id}) => {
+        return {task, id} // Retorna um array de objetos
+    })
 }
 
-const CreateEditModal = EditBtn.addEventListener('click', () => {
-    if(List.length == 0) {
-        ModalAlert();
-    } else {
-        const Div = document.createElement('div');
-        Div.classList.add('ModalContainerEditBtn');
-        
-        const ModalContent = document.createElement('div');
-        ModalContent.classList.add('EditBtnModalContent');
+Task.prototype.showElements = function(value) {
+    result.innerHTML = ''
 
-        const Overlay = document.createElement('div');
-        Overlay.classList.add('overlay'); 
+    this.PutElementslocalStorage(value)
+    const pickTasks = this.showAllTasks()
 
-        List.map((Element, indice) => {
-            const Contents = document.createElement('div');
-            Contents.classList.add('contents');
-            const DivElement = document.createElement('div');
-            DivElement.classList.add('DivElement');
-            DivElement.classList.add('edit' + indice);
+    if (value !== '' && value !== undefined) {
+        pickTasks.map(({task, id}) => {
+            const containerElements = document.createElement('div')
+            containerElements.classList.add('container-elements')
+            containerElements.setAttribute('data-container-id', id)
+            const divElement = document.createElement('div')
+            const doneImg = document.createElement('img')
+            doneImg.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png')
+            doneImg.setAttribute('data-id-doneImg', id);
+            doneImg.classList.add('imgDone')
 
-            const Emoji = document.createElement('img'); 
-            Emoji.classList.add('img');      
-            Emoji.classList.add('edit' + indice); 
-            Emoji.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png');    
-
-            DivElement.innerHTML = Element;  
-
-            Emoji.addEventListener('click', (event) => {
-                const target = event.target;
-                const ClassList = target.classList; 
+            doneImg.addEventListener("click", (event) => {
+                const getValue = event.target
+                const getValueAttr = getValue.getAttribute('data-id-doneImg')
                 
-                for(let i of ClassList) {
-                    const Icon1 = document.createElement(   'img');
-                    Icon1.innerHTML = "Done";
-                    Icon1.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png');
-                    const Icon2 = document.createElement('img');
-                    Icon2.innerHTML = "Close";
-                    Icon2.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png');
-
-                    if(DivElement.classList.contains(i)) {
-                        DivElement.setAttribute('contenteditable', 'true');
-                        const PreviousElement = DivElement.textContent; 
-
-                        // Limpa o conteúdo e reatribui para reposicionar o cursor
-                        DivElement.innerText = ''; // Limpa o conteúdo do elemento
-                        const originalText = PreviousElement; // Salva o texto original
-                        DivElement.innerText = originalText; // Adiciona o texto de volta ao elemento
-                        
-                        // Seleciona o texto e move o cursor para o final
-                        const selection = window.getSelection();
-                        const range = document.createRange();
-                        range.selectNodeContents(DivElement);
-                        range.collapse(false); // Move o cursor para o final
-                        selection.removeAllRanges();
-                        selection.addRange(range);
-                        
-
-                        Emoji.style.display = 'none';
-                        Icon1.classList.add('icons');
-                        Icon1.addEventListener('click', () => {
-                            Icon1.style.display = 'none';
-                            Icon2.style.display = 'none';
-                            Emoji.style.display = 'block';
-                            DivElement.setAttribute('contenteditable', 'false');
-                            
-                            List[indice] = DivElement.textContent;
-
-                            //Reexibe os elementos na exibição
-                            Print();
-                        })
-
-                        Icon2.classList.add('icons');
-                        Icon2.addEventListener('click', () => {
-                            Icon1.style.display = 'none';
-                            Icon2.style.display = 'none';
-                            Emoji.style.display = 'block';
-                            DivElement.textContent = PreviousElement;
-                            DivElement.setAttribute('contenteditable', 'false');
-                        })
-
-                        DivElement.focus();
-                        Contents.appendChild(Icon1);
-                        Contents.appendChild(Icon2);
-                    }
-                }
-            }) 
-            
-            ModalContent.appendChild(Contents);
-            Contents.appendChild(DivElement);         
-            Contents.appendChild(Emoji); 
-        })
-
-        const CloseModal = document.createElement('button');
-        CloseModal.classList.add('closeEditModal');
-        CloseModal.innerHTML = "Close";
-
-        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
-
-        Main.appendChild(Div);
-        Div.appendChild(ModalContent);
-        Div.appendChild(CloseModal);
-        Main.appendChild(Overlay);
-    }
-}) 
-
-const CreateRemoveModal = RemoveBtn.addEventListener('click', () => {
-    if(List.length == 0) {
-        ModalAlert();
-    } else {
-        const Div = document.createElement('div');
-        Div.classList.add('ModalContainerEditBtn');
-        
-        const ModalContent = document.createElement('div');
-        ModalContent.classList.add('EditBtnModalContent');
-
-        const Overlay = document.createElement('div');
-        Overlay.classList.add('overlay'); 
-
-        List.map((Elements, indice) => {
-            const Contents = document.createElement('div');
-            Contents.classList.add('contents');
-            const DivElement = document.createElement('div');
-            DivElement.classList.add('DivElement');
-            DivElement.classList.add('edit' + indice);
-            
-            const Emoji = document.createElement('img'); 
-            Emoji.classList.add('img');      
-            Emoji.classList.add('edit' + indice); 
-            Emoji.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png');
-
-            DivElement.innerHTML = Elements;
-
-            Emoji.addEventListener('click', (evt) => {
-                const ElementSelected = evt.target;
-                const ClassList = ElementSelected.classList;
-
-                RemoveElement(ElementSelected, Contents);
-
+                this.addCompletedTask(task, getValueAttr)
+                this.removeTask(id)  // Remove a tarefa depois de adicionar a tarefa concluída
+                
+                this.updateScreen()  // Atualiza a tela para refletir a remoção
             })
-
-            ModalContent.appendChild(Contents);
-            Contents.appendChild(DivElement);         
-            Contents.appendChild(Emoji);
-        })
-
-        const CloseModal = document.createElement('button');
-        CloseModal.classList.add('closeEditModal');
-        CloseModal.innerHTML = "Close";
-
-        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
-
-        Main.appendChild(Div);
-        Div.appendChild(ModalContent);
-        Div.appendChild(CloseModal);
-        Main.appendChild(Overlay);
-    }
-})
-
-function closeModal(Div, CloseModal, Overlay) {
-    Div.classList.remove('modal');
-    Div.classList.remove('ModalContainerEditBtn'); 
-    CloseModal.classList.remove('CloseEditModal');
-    Div.innerHTML = "";
-    CloseModal.innerHTML = ""; 
-    Overlay.classList.remove('overlay'); 
-}
-
-function RemoveElement(Element, Contents) {
-    const elementText = Element.parentElement.querySelector('.DivElement').textContent;
-    const Index = List.findIndex((El) => El === elementText);
-    if(Index != -1) {
-        List.splice(Index, 1);
-        Contents.remove();
-        Print();
+            
+            divElement.innerHTML = task
+            
+            result.appendChild(containerElements)
+            containerElements.appendChild(divElement)
+            containerElements.appendChild(doneImg)
+        });
     }
 }
 
-function Print() {
-    Result.innerHTML = "";
-    List.forEach((element) => {
-        const Div = document.createElement('div');
-        const Paragraph = document.createElement('p');
-        Paragraph.innerHTML = element;
-        Result.appendChild(Div);
-        Div.appendChild(Paragraph);
+Task.prototype.showCompletedElements = function() {
+    divContent.innerHTML = ''; // Limpar o conteúdo atual do modal
+
+    // Recarregar todas as tarefas concluídas do localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const key = localStorage.key(i)
+
+        if (key.includes("completed")) {
+            const task = localStorage.getItem(key)
+
+            const contents = document.createElement('div')
+            contents.classList.add('contents')
+            contents.setAttribute('id-contents', key)
+
+            const img = document.createElement('img')
+            img.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png')
+            img.setAttribute('data-remove-id', key) // Ajusta aqui para pegar o ID correto
+            img.classList.add('icons')
+            
+            // Pegar data-remove-id IMG and Contents Container
+            img.addEventListener('click', (imgEvent) => {
+                const pickContainerContents = imgEvent.target.parentElement
+                
+                const pickImgId = imgEvent.target.getAttribute('data-remove-id')
+                pickContainerContents.remove()
+                newTask.removeTask(pickImgId)
+                newTask.updateScreen()
+            })
+         
+            const divElement = document.createElement('div')
+            divElement.classList.add('task')
+            divElement.textContent = task
+            
+            contents.appendChild(divElement)
+            contents.appendChild(img);
+            
+            divContent.appendChild(contents) 
+        }
+    }
+}
+
+Task.prototype.PutElementslocalStorage = function(value) {
+    localStorage.setItem("cont", ++cont)
+
+    const pickTasksStorage = value
+    const pickIdStorage = "task" + cont
+
+    localStorage.setItem(pickIdStorage, pickTasksStorage)
+
+    // Limpa as tarefas anteriores para evitar duplicação
+    this.task = []
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const pickIdStorage = localStorage.key(i)
+        const pickValueStorage = localStorage.getItem(pickIdStorage)
+
+        if (pickIdStorage !== "cont" && !(pickIdStorage.includes("completed"))) {
+            this.addTask(pickValueStorage, pickIdStorage)
+            console.log(this.task)
+        }
+    }
+}
+
+Task.prototype.updateScreen = function() {
+    result.innerHTML = '' // Limpar o conteúdo atual da tela principal
+
+    const pickTasks = this.showAllTasks()
+
+    pickTasks.forEach(({task, id}) => {
+        if (!id.includes("completed")) {
+            const containerElements = document.createElement('div')
+            containerElements.classList.add('container-elements')
+            containerElements.setAttribute('data-container-id', id)
+
+            const divElement = document.createElement('div')
+            const doneImg = document.createElement('img')
+            doneImg.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png')
+            doneImg.setAttribute('data-id-doneImg', id)
+            doneImg.classList.add('imgDone')
+
+            doneImg.addEventListener("click", (event) => {
+                const getValue = event.target
+                const getValueAttr = getValue.getAttribute('data-id-doneImg')
+                this.addCompletedTask(task, getValueAttr)
+                this.removeTask(id) 
+                this.updateScreen()  // Atualiza a tela após a remoção
+            });
+
+            divElement.innerHTML = task
+
+            result.appendChild(containerElements)
+            containerElements.appendChild(divElement)
+            containerElements.appendChild(doneImg)
+        }
     });
 }
 
-function ModalAlert() {
-        const Div = document.createElement('div');
-        Div.classList.add('modal');
-        const ModalContent = document.createElement('div');
-        ModalContent.classList.add('modal-content');
 
-        const Overlay = document.createElement('div');
-        Overlay.classList.add('overlay');
- 
-        const AlertMessage = document.createElement('div');
-        AlertMessage.classList.add('NoTask');
-        AlertMessage.innerHTML = "There is no any task!";
+// Criação de uma instância de Task
+let newTask = new Task();
 
-        const CloseModal = document.createElement('button');
-        CloseModal.classList.add('close');
-        CloseModal.innerHTML = "Close";
+document.addEventListener('DOMContentLoaded', () => {
+    newTask.task = []
+    newTask.completedTask = []
+    console.log(newTask.completedTask)
+    for (let i = 0; i < localStorage.length; i++) {
+        const pickIdStorage = localStorage.key(i)
+        const pickValueStorage = localStorage.getItem(pickIdStorage)
 
-        CloseModal.addEventListener('click', () => closeModal(Div, CloseModal, Overlay));
+        if (pickIdStorage !== "cont" && !pickIdStorage.includes("completed")) {
+            newTask.addTask(pickValueStorage, pickIdStorage)
+        } else if (pickIdStorage.includes("completed")) {
+            // Limpar array para não duplicar
+            const cleanedId = pickIdStorage.replace('completed', '') 
+            // Carregar tarefas concluídas
+            newTask.addCompletedTask(pickValueStorage, cleanedId)
+        }
+    }
+    newTask.updateScreen();
+});
 
-        Main.appendChild(Div);
-        Div.appendChild(ModalContent);
-        ModalContent.appendChild(AlertMessage);
-        ModalContent.appendChild(CloseModal);
-        Main.appendChild(Overlay);
+const addElements = addBtn.addEventListener('click', () => {
+    createAddElements()
+
+    btnSubmit.addEventListener('click', () => {
+        newTask.showElements(textInput.value)
+    })
+
+    closeBtn.addEventListener('click', () => divContainer.remove())
+    
+})
+
+const editElements = editBtn.addEventListener('click' , () => {
+    const isThere = isThereElement()
+    if(!isThere) {
+        return
+    }
+    
+    CreateEditElements()
+    
+    const pickTasks = newTask.showAllTasks()
+    pickTasks.map(({task, id}) => {
+        if(!(id.includes("completed"))) {
+            const contents = document.createElement('div')
+            contents.classList.add('contents')
+            contents.setAttribute('id-contents', id)
+            divContent.appendChild(contents)
+    
+            const divElement = document.createElement('div')
+            divElement.setAttribute('data-div-id', id)
+            divElement.classList.add('DivElement')
+    
+            const img = document.createElement('img')
+            img.setAttribute('src', 'assets/images/edit_FILL0_wght400_GRAD0_opsz24 (1).png')
+            img.setAttribute('data-edit-id', id)
+            img.classList.add('icons')
+    
+            // Pegar data-edit-id IMG and Contents Container
+            img.addEventListener('click' ,(img) => {
+                const pickDivElement = img.target.previousElementSibling
+    
+                const pickDivElementId = pickDivElement.getAttribute('data-div-id')
+                
+                pickDivElement.setAttribute('contenteditable', 'true')
+    
+                const previousElement = pickDivElement.textContent
+    
+                // Limpa o conteúdo e reatribui para reposicionar o cursor
+                pickDivElement.innerText = '' // Limpa o conteúdo do elemento
+                const originalText = previousElement // Salva o texto original
+                pickDivElement.innerText = originalText // Adiciona o texto de volta ao elemento
+                            
+                // Seleciona o texto e move o cursor para o final
+                const selection = window.getSelection()
+                const range = document.createRange()
+                range.selectNodeContents(pickDivElement)
+                range.collapse(false) // Move o cursor para o final
+                selection.removeAllRanges()
+                selection.addRange(range)
+    
+                const doneImg = document.createElement('img')
+                doneImg.setAttribute('src', 'assets/images/done_FILL0_wght400_GRAD0_opsz24.png')
+                doneImg.classList.add('icons')
+                doneImg.addEventListener('click', () => {
+                    newTask.editTask(pickDivElement.textContent, pickDivElementId)
+                    
+                    contents.removeChild(doneImg)
+                    contents.removeChild(closeImg)
+                    pickDivElement.setAttribute('contenteditable', 'false')
+                    img.target.style.display = 'block'
+                })
+    
+                closeImg.addEventListener('click', () => {
+                    contents.removeChild(doneImg)
+                    contents.removeChild(closeImg)
+                    pickDivElement.innerHTML = previousElement
+                    pickDivElement.setAttribute('contenteditable', 'false')
+                    img.target.style.display = 'block'
+                })
+                
+                img.target.style.display = 'none'
+                contents.appendChild(doneImg)
+                contents.appendChild(closeImg)
+            })
+    
+    
+            divElement.innerHTML = task
+    
+            contents.appendChild(divElement)
+            contents.appendChild(img)
+            
+        }
+    })
+})
+
+const removeElements = removeBtn.addEventListener('click', () => {
+    const isThere = isThereElement()
+    if(!isThere) {
+        return
+    }
+
+    createRemoveElements()
+    
+    const pickTasks = newTask.showAllTasks()
+    pickTasks.map(({task, id}) => {
+        if(!(id.includes("completed"))) {
+            const contents = document.createElement('div')
+            contents.classList.add('contents')
+            contents.setAttribute('id-contents', id)
+            divContent.appendChild(contents)
+    
+            const divElement = document.createElement('div')
+            divElement.classList.add('DivElement')
+    
+            const img = document.createElement('img')
+            img.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png')
+            img.setAttribute('data-remove-id', id)
+            img.classList.add('icons')
+            
+            // Pegar data-remove-id IMG and Contents Container
+            img.addEventListener('click' ,(img) => {
+                const pickContainerContents = img.target.parentElement
+                
+                const pickImg = img.target
+                const pickImgId = pickImg.getAttribute('data-remove-id')
+                pickContainerContents.remove()
+                newTask.removeTask(pickImgId)
+                newTask.updateScreen()
+            })
+         
+            divElement.innerHTML = task
+    
+            contents.appendChild(divElement)
+            contents.appendChild(img)
+
+        }
+    })
+    
+    closeBtn.addEventListener('click', () => divContainer.remove())
+})
+
+
+const createCompletedTasks = completedTasks.addEventListener('click', () => {
+    const isThere = isThereElement()
+    if(!isThere) {
+        return
+    }
+    CreateEditElements()
+    newTask.updateScreen()
+    newTask.showCompletedElements();
+})
+
+
+// Cria modal para o btn de adicionar
+function createAddElements() {
+    divContainer = document.createElement('div')
+    divContainer.classList.add('modal')
+
+    divContent = document.createElement('div')
+    divContent.classList.add('modal-content')
+    
+    textInput = document.createElement('input')
+    textInput.setAttribute('type', 'text')
+    textInput.setAttribute('placeholder', 'Task')
+    textInput.classList.add('TextInput')
+
+    btnSubmit = document.createElement('button')
+    btnSubmit.classList.add('SubmitInput')
+
+    btnSubmit.innerHTML = "Submit"
+
+    closeBtn = document.createElement('button')
+    closeBtn.classList.add('close')
+
+    closeBtn.innerHTML = "Close"
+
+    document.body.appendChild(divContainer)
+    divContainer.appendChild(divContent)
+    divContent.appendChild(textInput)
+    divContent.appendChild(btnSubmit)
+    divContent.appendChild(closeBtn)
+    textInput.focus()
 }
 
-function UpdateHour() {
+// Cria o modal para o btn de editar
+function CreateEditElements() {
+    divContainer = document.createElement('div')
+    divContainer.classList.add('ModalContainerWithElements')
+
+    divContent = document.createElement('div')
+    divContent.classList.add('BtnModalContent')
+    divContainer.appendChild(divContent)
+
+    closeImg = document.createElement('img')
+    closeImg.setAttribute('src', 'assets/images/close_FILL0_wght400_GRAD0_opsz24.png')
+    closeImg.classList.add('icons')
+
+    closeBtn = document.createElement('button')
+    closeBtn.classList.add('closeEditModal')
+    closeBtn.innerHTML = "Close"
+    closeBtn.addEventListener('click', () => divContainer.remove())
+    divContainer.appendChild(closeBtn)
+
+
+    document.body.appendChild(divContainer)
+}
+
+// Cria o modal para o btn de remover
+function createRemoveElements() {
+    divContainer = document.createElement('div')
+    divContainer.classList.add('ModalContainerWithElements')
+
+    divContent = document.createElement('div')
+    divContent.classList.add('BtnModalContent')
+    divContainer.appendChild(divContent)
+
+
+    closeBtn = document.createElement('button')
+    closeBtn.classList.add('closeEditModal')
+    closeBtn.innerHTML = "Close"
+
+    divContainer.appendChild(closeBtn)
+
+    document.body.appendChild(divContainer)
+}
+
+// Checa se há elementos no localStorage
+function isThereElement() {
+    if(localStorage.length > 0) {
+        return true;
+    }
+}
+
+// Atualiza a hora a cada 1s
+const UpdateHour = () => {
     const NewTime = new Date();
     let Hour = NewTime.getHours();
     let Minutes = NewTime.getMinutes();
@@ -298,7 +478,7 @@ function UpdateHour() {
     Hour = Hour < 10 ? '0' + Hour : Hour;
     Minutes = Minutes < 10 ? '0' + Minutes : Minutes;
 
-    Time.innerHTML = Hour + ":" + Minutes;
+    time.innerHTML = Hour + ":" + Minutes;
 }
 setInterval(UpdateHour, 1000); /* Update the hour 1 to 1 sec */
 UpdateHour();

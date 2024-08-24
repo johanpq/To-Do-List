@@ -6,7 +6,7 @@
   header, main {
     max-width: 60%;
   }
-  .modal, .ModalContainerEditBtn {
+  .modal, .ModalContainerWithElements {
     max-width: 40%;
   }
   .overlay {
@@ -18,7 +18,7 @@
   header, main {
     max-width: 35%;
   }
-  .modal, .ModalContainerEditBtn {
+  .modal, .ModalContainerWithElements {
     max-width: 25%;
   }
   .overlay {
@@ -118,7 +118,7 @@
 }
 
 /* Edit Btn */ 
-.ModalContainerEditBtn {
+.ModalContainerWithElements {
   display: block;
   position: absolute;
   width: 75%;
@@ -131,10 +131,10 @@
   border: 1px solid #ccc;
   border-radius: 15px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-  width: 75%;
+  width: 55%;
   height: 80%;
 }
-.ModalContainerEditBtn .EditBtnModalContent {
+.ModalContainerWithElements .BtnModalContent {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -149,7 +149,7 @@
   padding: 5px;
   width: 100%;
 }
-.ModalContainerEditBtn .EditBtnModalContent .img {
+.ModalContainerWithElements .BtnModalContent .img {
   background-size: cover;
   color: white;
   height: 100%;
@@ -157,18 +157,20 @@
   margin-left: 10px;
   cursor: pointer;
 }
-.ModalContainerEditBtn .EditBtnModalContent .icons {
+.ModalContainerWithElements .BtnModalContent .icons {
   border: 1px solid rgba(0, 0, 0, 0.267);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   margin-left: 5px;
   cursor: pointer;
 }
-.ModalContainerEditBtn .EditBtnModalContent .contents {
+.ModalContainerWithElements .BtnModalContent .contents {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.ModalContainerEditBtn .EditBtnModalContent .contents .DivElement {
+.ModalContainerWithElements .BtnModalContent .contents .DivElement {
   border: 1px solid rgba(56, 56, 56, 0.1098039216);
   background-color: #D7D7D9;
   border-radius: 10px;
@@ -179,7 +181,7 @@
   overflow-x: hidden;
   margin: 0px;
 }
-.ModalContainerEditBtn .closeEditModal {
+.ModalContainerWithElements .closeEditModal {
   display: block;
   position: absolute;
   color: #BF6B6B;
@@ -191,6 +193,15 @@
   padding: 5px;
   bottom: 2px;
   right: 5px;
+}
+
+.container-elements {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.container-elements .imgDone {
+  cursor: pointer;
 }
 
 * {
@@ -257,6 +268,10 @@ body main .options-container button:hover {
   transition: color 0.5s;
   transition: background-color 0.5s;
 }
+body main .options-container .svgs {
+  position: absolute;
+  cursor: pointer;
+}
 body main .time {
   text-align: end;
   padding: 50px 20px 0px 0px;
@@ -281,4 +296,4 @@ body main .results div {
   padding: 5px;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -1,120 +1,142 @@
 @use '_variables'
 @use '_mixins' 
+
 /* JS classes */
 
 /* Add Btn */
-.modal
-    @include mixins.Modal  
+.modal 
+    display: block 
+    position: absolute  
+    width: 75%       
+    z-index: 1000
+    left: 50% 
+    top: 50% 
+    transform: translate(-50%, -50%)  
+    background-color: white
+    padding: 40px
+    border: 1px solid #ccc
+    border-radius: 15px 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
         
-    .modal-content
+    .modal-content 
         display: flex
         flex-direction: row 
         height: 100%
         justify-content: center
         align-content: center 
-        margin: 15px 
-        gap: 5px   
+        margin: 15px
+        gap: 5px  
+    
  
-        .TextInput  
+        .TextInput 
             position: relative
-            padding: 8px       
+            padding: 8px      
             width: 10rem     
-            border: 1px solid variables.$Second-color  
+            border: 1px solid variables.$Second-color   
             box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.171)  
             border-radius: 8px
+        
 
-        .TextInput:hover
+        .TextInput:hover 
             border: 1px solid variables.$Third-color
             transition: border 0.4s
+        
  
-        .TextInput:focus
+        .TextInput:focus 
             outline: 0px
             outline-color: blue
+        
  
-        .SubmitInput
+        .SubmitInput 
             position: relative
             padding: 5px
             border-radius: 8px 
             cursor: pointer  
             border: 1px solid rgba(0, 0, 0, 0.158) 
             box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.171)
-            background-color: variables.$Sixth-color      
+            background-color: variables.$Sixth-color
+        
              
 
         .close 
-            @include mixins.Close 
+            @include mixins.Close   
+        
 
-        .close:hover  
+        .close:hover 
             color: variables.$Forth-color
             background-color: variables.$Seventh-color 
             transition: background-color 0.5s
-            transition: color 0.5s  
+            transition: color 0.5s
+        
+
 
 .overlay 
-    @include mixins.Overlay   
+    @include mixins.Overlay 
+
 
 
 /* Add and Edit Btn */
 
 .NoTask 
-    color: variables.$Seventh-color   
+    color: variables.$Seventh-color    
     background-color: variables.$Forth-color
-    padding: 7px  
+    padding: 7px
     font-size: 1.2em 
     border: 1px solid black
     box-shadow: 1px 1px 5px -1px #00000066 
     border-radius: 7px
+
   
 /* Edit Btn */ 
  
 .ModalContainerWithElements 
     @include mixins.Modal   
-    width: 75%                 
+    width: 55%               
     height: 80%           
 
-    .EditBtnModalContent 
+    .BtnModalContent 
         display: flex     
         flex-direction: column     
         height: 100%                  
-        gap: 10px       
+        gap: 10px     
         overflow-y: auto        
         @include mixins.DivElement
         width: 100%         
   
-        .img         
+        .img 
             background-size: cover    
             color: white 
             height: 100%          
             width: 30px   
             margin-left: 10px            
-            cursor: pointer  
-
-        .icons   
-            border: 1px solid rgba(0, 0, 0, 0.267)
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
-            border-radius: 4px  
-            margin-left: 5px   
             cursor: pointer 
 
-        .contents
+        .icons 
+            border: 1px solid rgba(0, 0, 0, 0.267)
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5)
+            border-radius: 4px
+            margin-left: 5px  
+            cursor: pointer 
+
+        .contents 
             display: flex   
-            flex-direction: row     
+            flex-direction: row    
+            justify-content: center
+            align-items: center
  
-            .DivElement          
-                @include mixins.DivElement    
+            .DivElement 
+                @include mixins.DivElement  
                 overflow-x: hidden 
-                margin: 0px       
-                
+                margin: 0px 
             
     .closeEditModal 
-        @include mixins.Close   
+        @include mixins.Close    
 
-    .container-elements 
-        display: flex
-        flex-direction: row
-        width: 100%
+.container-elements 
+    display: flex
+    flex-direction: row
+    width: 100%
 
 
-    .imgDone
+    .imgDone 
         cursor: pointer
-                
